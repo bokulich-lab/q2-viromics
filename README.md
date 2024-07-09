@@ -25,7 +25,7 @@ cd q2-viromics
 Then, run:
 
 ```shell
-mamba create -n q2-viromics -c conda-forge -c bioconda -c https://packages.qiime2.org/qiime2/2024.10/metagenome/passed/ -c defaults q2cli q2-types checkv
+mamba create -n q2-viromics -c conda-forge -c bioconda -c https://packages.qiime2.org/qiime2/2024.10/metagenome/passed/ -c defaults q2cli q2-types checkv pyhmmer
 ```
 
 After this completes, activate the new environment you created by running:
