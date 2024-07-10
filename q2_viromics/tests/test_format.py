@@ -20,7 +20,7 @@ class TestCheckVDbFormats(TestPluginBase):
     package = "q2_viromics.tests"
 
     def test_CheckVDb_GeneralTSVFormat(self):
-        filepath = self.get_data_path("type/checkVdb/genome_db/checkv_error.tsv")
+        filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_error.tsv")
         format = GeneralTSVFormat(filepath, mode="r")
         format.validate()
 
@@ -39,12 +39,12 @@ class TestCheckVDbFormats(TestPluginBase):
             format.validate()
 
     def test_GeneralBinaryFileFormat(self):
-        filepath = self.get_data_path("type/checkVdb/genome_db/checkv_reps.dmnd")
+        filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_reps.dmnd")
         format = GeneralBinaryFileFormat(filepath, mode="r")
         format.validate()
 
     def test_HMMFormat(self):
-        filepath = self.get_data_path("type/checkVdb/hmm_db/checkv_hmms/1.hmm")
+        filepath = self.get_data_path("type/db/checkVdb/hmm_db/checkv_hmms/1.hmm")
         format = HMMFormat(filepath, mode="r")
         format.validate()
 
@@ -56,6 +56,6 @@ class TestCheckVDbFormats(TestPluginBase):
             format.validate()
 
     def test_CheckVDbDirFmt(self):
-        filepath = self.get_data_path("type/checkVdb/")
+        filepath = self.get_data_path("type/db/")
         format = CheckVDbDirFmt(filepath, mode="r")
         format.validate()
