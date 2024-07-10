@@ -10,8 +10,8 @@ from qiime2.plugin.testing import TestPluginBase
 from q2_viromics.types._type import CheckVDb
 
 
-class TestVirsorter2DbType(TestPluginBase):
+class TestCheckVDbType(TestPluginBase):
     package = "q2_viromics.tests"
 
-    def test_Virsorter2Db_registration(self):
+    def test_CheckVDb_registration(self):
         self.assertRegisteredSemanticType(CheckVDb)
