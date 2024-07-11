@@ -81,29 +81,29 @@ class CheckVDBDirFmt(model.DirectoryFormat):
     tsv_files_hmm_db = model.FileCollection(r"hmm_db/.+\.tsv$", format=GeneralTSVFormat)
 
     @hmm_files.set_path_maker
-    def hmm_files_path_maker(self, sample_id):
-        return "hmm/{}/{}.hmm".format(sample_id[0], sample_id[1])
+    def hmm_files_path_maker(self, dir, name):
+        return "hmm/%s/%s.hmm" % dir, name
 
     @tsv_files_genome_db.set_path_maker
-    def tsv_files_genome_db_path_maker(self, sample_id):
-        return "genome_db/{}.tsv".format(sample_id[0])
+    def tsv_files_genome_db_path_maker(self, name):
+        return "genome_db/%s.tsv" % name
 
     @dmnd_files_genome_db.set_path_maker
-    def dmnd_files_genome_db_path_maker(self, sample_id):
-        return "genome_db/{}.dmnd".format(sample_id[0])
+    def dmnd_files_genome_db_path_maker(self, name):
+        return "genome_db/%s.dmnd" % name
 
     @faa_files_genome_db.set_path_maker
-    def faa_files_genome_db_path_maker(self, sample_id):
-        return "genome_db/{}.faa".format(sample_id[0])
+    def faa_files_genome_db_path_maker(self, name):
+        return "genome_db/%s.faa" % name
 
     @fna_files_genome_db.set_path_maker
-    def fna_files_genome_db_path_maker(self, sample_id):
-        return "genome_db/{}.fna".format(sample_id[0])
+    def fna_files_genome_db_path_maker(self, name):
+        return "genome_db/%s.fna" % name
 
     @log_files_genome_db.set_path_maker
-    def log_files_genome_db_path_maker(self, sample_id):
-        return "genome_db/{}.log".format(sample_id[0])
+    def log_files_genome_db_path_maker(self, name):
+        return "genome_db/%s.log" % name
 
     @tsv_files_hmm_db.set_path_maker
-    def tsv_files_hmm_db_path_maker(self, sample_id):
-        return "hmm_db/{}.tsv".format(sample_id[0])
+    def tsv_files_hmm_db_path_maker(self, name):
+        return "hmm_db/%s.tsv" % name
