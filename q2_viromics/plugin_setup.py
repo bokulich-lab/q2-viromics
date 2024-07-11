@@ -8,8 +8,8 @@
 from qiime2.plugin import Citations, Plugin
 
 from q2_viromics import __version__
-from q2_viromics.types._format import CheckVDbDirFmt
-from q2_viromics.types._type import CheckVDb
+from q2_viromics.types._format import CheckVDBDirFmt
+from q2_viromics.types._type import CheckVDB
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -26,13 +26,13 @@ plugin = Plugin(
 )
 
 plugin.register_formats(
-    CheckVDbDirFmt,
+    CheckVDBDirFmt,
 )
 
-plugin.register_semantic_types(CheckVDb)
+plugin.register_semantic_types(CheckVDB)
 
 plugin.register_artifact_class(
-    CheckVDb,
-    directory_format=CheckVDbDirFmt,
+    CheckVDB,
+    directory_format=CheckVDBDirFmt,
     description=("CheckV database."),
 )

@@ -60,7 +60,7 @@ class HMMFormat(model.TextFileFormat):
 
 
 # Directory format for the checkV Database
-class CheckVDbDirFmt(model.DirectoryFormat):
+class CheckVDBDirFmt(model.DirectoryFormat):
     hmm_files = model.FileCollection(r"hmm_db/.+/.+\.hmm$", format=HMMFormat)
     readme = model.File(r"README.txt$", format=GeneralBinaryFileFormat)
     tsv_files_genome_db = model.FileCollection(

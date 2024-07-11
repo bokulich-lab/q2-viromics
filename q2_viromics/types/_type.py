@@ -7,4 +7,4 @@
 # ----------------------------------------------------------------------------
 from qiime2.plugin import SemanticType
 
-CheckVDb = SemanticType("CheckVDb")
+CheckVDB = SemanticType("CheckVDB")
