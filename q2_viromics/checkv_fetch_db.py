@@ -8,7 +8,7 @@
 import subprocess
 
 from q2_viromics._utils import run_command
-from q2_viromics.types._format import CheckVDbDirFmt
+from q2_viromics.types._format import CheckVDBDirFmt
 
 
 # Create the command to fetch the CheckV database
@@ -30,10 +30,10 @@ def checkv_download_database(database):
         )
 
 
-# Fetch the Virsorter2 database
-def checkv_fetch_db() -> CheckVDbDirFmt:
+# Fetch the CheckV database
+def checkv_fetch_db() -> CheckVDBDirFmt:
     # Initialize a directory format object to store the Minimap2 index
-    database = CheckVDbDirFmt()
+    database = CheckVDBDirFmt()
 
     # Construct the command to build the Minimap2 index file
     checkv_download_database(database)

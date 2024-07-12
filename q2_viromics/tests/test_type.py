@@ -7,11 +7,11 @@
 # ----------------------------------------------------------------------------
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_viromics.types._type import CheckVDb
+from q2_viromics.types._type import CheckVDB
 
 
 class TestCheckVDbType(TestPluginBase):
     package = "q2_viromics.tests"
 
     def test_CheckVDb_registration(self):
-        self.assertRegisteredSemanticType(CheckVDb)
+        self.assertRegisteredSemanticType(CheckVDB)

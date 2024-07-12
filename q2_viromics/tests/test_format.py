@@ -9,30 +9,30 @@ from qiime2.plugin import ValidationError
 from qiime2.plugin.testing import TestPluginBase
 
 from q2_viromics.types._format import (
-    CheckVDbDirFmt,
+    CheckVDBDirFmt,
     GeneralBinaryFileFormat,
     GeneralTSVFormat,
     HMMFormat,
 )
 
 
-class TestCheckVDbFormats(TestPluginBase):
+class TestCheckVDBFormats(TestPluginBase):
     package = "q2_viromics.tests"
 
-    def test_CheckVDb_GeneralTSVFormat(self):
+    def test_CheckVDB_GeneralTSVFormat(self):
         filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_error.tsv")
         format = GeneralTSVFormat(filepath, mode="r")
         format.validate()
 
     # Test the case of a missing element for a column in a random row
-    def test_CheckVDb_GeneralTSVFormat_neg1(self):
+    def test_CheckVDB_GeneralTSVFormat_neg1(self):
         filepath = self.get_data_path("type/negative/tsv_neg1.tsv")
         format = GeneralTSVFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "GeneralTSVFormat"):
             format.validate()
 
     # Test the case of an empty element for a column in a random row
-    def test_CheckVDb_GeneralTSVFormat_neg2(self):
+    def test_CheckVDB_GeneralTSVFormat_neg2(self):
         filepath = self.get_data_path("type/negative/tsv_neg2.tsv")
         format = GeneralTSVFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "GeneralTSVFormat"):
@@ -55,7 +55,8 @@ class TestCheckVDbFormats(TestPluginBase):
         with self.assertRaisesRegex(ValueError, "Invalid"):
             format.validate()
 
-    def test_CheckVDbDirFmt(self):
+    def test_CheckVDBDirFmt(self):
         filepath = self.get_data_path("type/db/")
-        format = CheckVDbDirFmt(filepath, mode="r")
+        format = CheckVDBDirFmt(filepath, mode="r")
+
         format.validate()
