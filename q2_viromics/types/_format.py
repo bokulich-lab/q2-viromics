@@ -84,28 +84,28 @@ class CheckVDBDirFmt(model.DirectoryFormat):
 
     @hmm_files.set_path_maker
     def hmm_files_path_maker(self, outer_dir, dir, name):
-        return "%s/hmm/%s/%s.hmm" % outer_dir, dir, name
+        return "%s/hmm/%s/%s.hmm" % (outer_dir, dir, name)
 
     @tsv_files_genome_db.set_path_maker
     def tsv_files_genome_db_path_maker(self, outer_dir, name):
-        return "%s/genome_db/%s.tsv" % outer_dir, name
+        return "%s/genome_db/%s.tsv" % (outer_dir, name)
 
     @dmnd_files_genome_db.set_path_maker
     def dmnd_files_genome_db_path_maker(self, outer_dir, name):
-        return "%s/genome_db/%s.dmnd" % outer_dir, name
+        return "%s/genome_db/%s.dmnd" % (outer_dir, name)
 
     @faa_files_genome_db.set_path_maker
     def faa_files_genome_db_path_maker(self, outer_dir, name):
-        return "%s/genome_db/%s.faa" % outer_dir, name
+        return "%s/genome_db/%s.faa" % (outer_dir, name)
 
     @fna_files_genome_db.set_path_maker
     def fna_files_genome_db_path_maker(self, outer_dir, name):
-        return "%s/genome_db/%s.fna" % outer_dir, name
+        return "%s/genome_db/%s.fna" % (outer_dir, name)
 
     @log_files_genome_db.set_path_maker
     def log_files_genome_db_path_maker(self, outer_dir, name):
-        return "%s/genome_db/%s.log" % outer_dir, name
+        return "%s/genome_db/%s.log" % (outer_dir, name)
 
     @tsv_files_hmm_db.set_path_maker
     def tsv_files_hmm_db_path_maker(self, outer_dir, name):
-        return "%s/hmm_db/%s.tsv" % outer_dir, name
+        return "%s/hmm_db/%s.tsv" % (outer_dir, name)
