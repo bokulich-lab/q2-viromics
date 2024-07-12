@@ -5,9 +5,12 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-from qiime2.plugin import Citations, Plugin
+from q2_types.feature_data import FeatureData, Sequence
+from q2_types.metadata import ImmutableMetadata
+from qiime2.plugin import Citations, Int, Plugin, Range
 
 from q2_viromics import __version__
+from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
 from q2_viromics.types._format import CheckVDbDirFmt
 from q2_viromics.types._type import CheckVDb
@@ -52,5 +55,43 @@ plugin.methods.register_function(
         "of complete viral genomes from both cultured isolates "
         "and environmental samples."
     ),
+    citations=[citations["CheckV"]],
+)
+
+
+plugin.methods.register_function(
+    function=checkv_analysis,
+    inputs={
+        "sequences": FeatureData[Sequence],
+        "database": CheckVDb,
+    },
+    parameters={
+        "num_threads": Int % Range(1, None),
+    },
+    input_descriptions={
+        "sequences": "Viral sequences.",
+        "database": "CheckV database.",
+    },
+    parameter_descriptions={
+        "num_threads": "Number of threads to use for prodigal-gv and DIAMOND.",
+    },
+    outputs=[
+        ("viruses", FeatureData[Sequence]),
+        ("proviruses", FeatureData[Sequence]),
+        ("quality_summary", ImmutableMetadata),
+        ("contamination", ImmutableMetadata),
+        ("completeness", ImmutableMetadata),
+        ("complete_genomes", ImmutableMetadata),
+    ],
+    output_descriptions={
+        "viruses": "",
+        "proviruses": "",
+        "quality_summary": "",
+        "contamination": "",
+        "completeness": "",
+        "complete_genomes": "",
+    },
+    name="",
+    description=".",
     citations=[citations["CheckV"]],
 )
