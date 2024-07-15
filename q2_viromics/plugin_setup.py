@@ -64,7 +64,7 @@ plugin.methods.register_function(
     function=checkv_analysis,
     inputs={
         "sequences": FeatureData[Sequence],
-        "database": CheckVDb,
+        "database": CheckVDB,
     },
     parameters={
         "num_threads": Int % Range(1, None),

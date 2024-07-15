@@ -16,7 +16,7 @@ import qiime2
 from q2_types.feature_data import DNAFASTAFormat
 
 from q2_viromics._utils import run_command
-from q2_viromics.types._format import CheckVDbDirFmt
+from q2_viromics.types._format import CheckVDBDirFmt
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -56,7 +56,7 @@ def read_tsv_file(file_name, tmp):
 
 def checkv_analysis(
     sequences: DNAFASTAFormat,
-    database: CheckVDbDirFmt,
+    database: CheckVDBDirFmt,
     num_threads: int = 10,
 ) -> (
     DNAFASTAFormat,
