@@ -33,6 +33,7 @@ setup(
             "data/*/*/*",
             "data/*/*/*/*",
             "data/*/*/*/*/*",
+            "data/*/*/*/*/*/*",
         ],
     },
     zip_safe=False,

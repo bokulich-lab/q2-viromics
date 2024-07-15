@@ -61,49 +61,51 @@ class HMMFormat(model.TextFileFormat):
 
 # Directory format for the checkV Database
 class CheckVDBDirFmt(model.DirectoryFormat):
-    hmm_files = model.FileCollection(r"hmm_db/.+/.+\.hmm$", format=HMMFormat)
-    readme = model.File(r"README.txt$", format=GeneralBinaryFileFormat)
+    hmm_files = model.FileCollection(r"[^/]+/hmm_db/.+/.+\.hmm$", format=HMMFormat)
+    readme = model.File(r"[^/]+/README.txt$", format=GeneralBinaryFileFormat)
     tsv_files_genome_db = model.FileCollection(
-        r"genome_db/.+\.tsv$", format=GeneralTSVFormat
+        r"[^/]+/genome_db/.+\.tsv$", format=GeneralTSVFormat
     )
     dmnd_files_genome_db = model.FileCollection(
-        r"genome_db/.+\.dmnd$", format=GeneralBinaryFileFormat
+        r"[^/]+/genome_db/.+\.dmnd$", format=GeneralBinaryFileFormat
     )
     faa_files_genome_db = model.FileCollection(
-        r"genome_db/.+\.faa$", format=GeneralBinaryFileFormat
+        r"[^/]+/genome_db/.+\.faa$", format=GeneralBinaryFileFormat
     )
     fna_files_genome_db = model.FileCollection(
-        r"genome_db/.+\.fna$", format=GeneralBinaryFileFormat
+        r"[^/]+/genome_db/.+\.fna$", format=GeneralBinaryFileFormat
     )
     log_files_genome_db = model.FileCollection(
-        r"genome_db/.+\.log$", format=GeneralBinaryFileFormat
+        r"[^/]+/genome_db/.+\.log$", format=GeneralBinaryFileFormat
     )
-    tsv_files_hmm_db = model.FileCollection(r"hmm_db/.+\.tsv$", format=GeneralTSVFormat)
+    tsv_files_hmm_db = model.FileCollection(
+        r"[^/]+/hmm_db/.+\.tsv$", format=GeneralTSVFormat
+    )
 
     @hmm_files.set_path_maker
-    def hmm_files_path_maker(self, dir, name):
-        return "hmm/%s/%s.hmm" % dir, name
+    def hmm_files_path_maker(self, outer_dir, dir, name):
+        return "%s/hmm_db/%s/%s.hmm" % (outer_dir, dir, name)
 
     @tsv_files_genome_db.set_path_maker
-    def tsv_files_genome_db_path_maker(self, name):
-        return "genome_db/%s.tsv" % name
+    def tsv_files_genome_db_path_maker(self, outer_dir, name):
+        return "%s/genome_db/%s.tsv" % (outer_dir, name)
 
     @dmnd_files_genome_db.set_path_maker
-    def dmnd_files_genome_db_path_maker(self, name):
-        return "genome_db/%s.dmnd" % name
+    def dmnd_files_genome_db_path_maker(self, outer_dir, name):
+        return "%s/genome_db/%s.dmnd" % (outer_dir, name)
 
     @faa_files_genome_db.set_path_maker
-    def faa_files_genome_db_path_maker(self, name):
-        return "genome_db/%s.faa" % name
+    def faa_files_genome_db_path_maker(self, outer_dir, name):
+        return "%s/genome_db/%s.faa" % (outer_dir, name)
 
     @fna_files_genome_db.set_path_maker
-    def fna_files_genome_db_path_maker(self, name):
-        return "genome_db/%s.fna" % name
+    def fna_files_genome_db_path_maker(self, outer_dir, name):
+        return "%s/genome_db/%s.fna" % (outer_dir, name)
 
     @log_files_genome_db.set_path_maker
-    def log_files_genome_db_path_maker(self, name):
-        return "genome_db/%s.log" % name
+    def log_files_genome_db_path_maker(self, outer_dir, name):
+        return "%s/genome_db/%s.log" % (outer_dir, name)
 
     @tsv_files_hmm_db.set_path_maker
-    def tsv_files_hmm_db_path_maker(self, name):
-        return "hmm_db/%s.tsv" % name
+    def tsv_files_hmm_db_path_maker(self, outer_dir, name):
+        return "%s/hmm_db/%s.tsv" % (outer_dir, name)

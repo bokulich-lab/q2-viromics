@@ -20,7 +20,7 @@ class TestCheckVDBFormats(TestPluginBase):
     package = "q2_viromics.tests"
 
     def test_CheckVDB_GeneralTSVFormat(self):
-        filepath = self.get_data_path("type/checkVdb/genome_db/checkv_error.tsv")
+        filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_error.tsv")
         format = GeneralTSVFormat(filepath, mode="r")
         format.validate()
 
@@ -39,12 +39,12 @@ class TestCheckVDBFormats(TestPluginBase):
             format.validate()
 
     def test_GeneralBinaryFileFormat(self):
-        filepath = self.get_data_path("type/checkVdb/genome_db/checkv_reps.dmnd")
+        filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_reps.dmnd")
         format = GeneralBinaryFileFormat(filepath, mode="r")
         format.validate()
 
     def test_HMMFormat(self):
-        filepath = self.get_data_path("type/checkVdb/hmm_db/checkv_hmms/1.hmm")
+        filepath = self.get_data_path("type/db/checkVdb/hmm_db/checkv_hmms/1.hmm")
         format = HMMFormat(filepath, mode="r")
         format.validate()
 
@@ -56,6 +56,67 @@ class TestCheckVDBFormats(TestPluginBase):
             format.validate()
 
     def test_CheckVDBDirFmt(self):
-        filepath = self.get_data_path("type/checkVdb/")
+        filepath = self.get_data_path("type/db/")
         format = CheckVDBDirFmt(filepath, mode="r")
+
         format.validate()
+
+
+class TestCheckVDBDirFmtPathMakers(TestPluginBase):
+    package = "q2_viromics.tests"
+
+    def test_hmm_files_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.hmm_files_path_maker(
+            outer_dir="checkVdb", dir="checkv_hmms", name="1"
+        )
+        expected_path = "type/db/checkVdb/hmm_db/checkv_hmms/1.hmm"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_tsv_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.tsv_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_error"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_error.tsv"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_dmnd_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.dmnd_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.dmnd"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_faa_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.faa_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.faa"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_fna_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.fna_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.fna"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_log_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.log_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.log"
+        self.assertEqual(str(result_path), expected_path)
+
+    def test_tsv_files_hmm_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.tsv_files_hmm_db_path_maker(
+            outer_dir="checkVdb", name="genome_lengths"
+        )
+        expected_path = "type/db/checkVdb/hmm_db/genome_lengths.tsv"
+        self.assertEqual(str(result_path), expected_path)
