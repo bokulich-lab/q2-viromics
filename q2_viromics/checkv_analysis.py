@@ -75,18 +75,12 @@ def checkv_analysis(
         checkv_end_to_end(tmp, sequences, database, num_threads)
 
         # Copy the viral sequences file
-        shutil.copy(
-            os.path.join(tmp, "viruses.fna"),
-            os.path.join(str(viral_sequences)),
-        )
+        shutil.copy(os.path.join(tmp, "viruses.fna"), str(viral_sequences))
 
         # Copy the proviral sequences file
-        shutil.copy(
-            os.path.join(tmp, "proviruses.fna"),
-            os.path.join(str(proviral_sequences)),
-        )
+        shutil.copy(os.path.join(tmp, "proviruses.fna"), str(proviral_sequences))
 
-        # Read the tsv files into a DataFrames
+        # Read the TSV files into a DataFrame
         quality_summary_df = read_tsv_file("quality_summary.tsv", tmp)
         contamination_df = read_tsv_file("contamination.tsv", tmp)
         completeness_df = read_tsv_file("completeness.tsv", tmp)
