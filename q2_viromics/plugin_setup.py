@@ -22,10 +22,11 @@ plugin = Plugin(
     version=__version__,
     website="https://github.com/bokulich-lab/q2-viromics",
     package="q2_viromics",
-    description="A QIIME 2 plugin for assessing the quality and completeness of "
-    "metagenome-assembled viral genomes.",
-    short_description="A QIIME 2 plugin for assessing the quality and completeness "
-    "of metagenome-assembled viral genomes.",
+    description="A QIIME 2 plugin for evaluating viral genome quality "
+    "and completeness from metagenomes and removing "
+    "host contamination.",
+    short_description="A QIIME 2 plugin for detecting viral genomes and assessing "
+    "their quality.",
     citations=[citations["Caporaso-Bolyen-2024"]],
 )
 
@@ -69,7 +70,7 @@ plugin.methods.register_function(
         "num_threads": Int % Range(1, None),
     },
     input_descriptions={
-        "sequences": "Viral sequences.",
+        "sequences": "Input sequences.",
         "database": "CheckV database.",
     },
     parameter_descriptions={
@@ -84,14 +85,15 @@ plugin.methods.register_function(
         ("complete_genomes", ImmutableMetadata),
     ],
     output_descriptions={
-        "viruses": "",
-        "proviruses": "",
-        "quality_summary": "",
-        "contamination": "",
-        "completeness": "",
-        "complete_genomes": "",
+        "viruses": "Viral sequences.",
+        "proviruses": "Proviral sequences.",
+        "quality_summary": "Summary of sequence quality, completeness, and "
+        "contamination.",
+        "contamination": "Details on contamination levels, viral and host genes.",
+        "completeness": "Completeness estimates and confidence levels.",
+        "complete_genomes": "Complete genomes with predictions.",
     },
-    name="",
-    description=".",
+    name="Analysis of viral genomes",
+    description="Assessing the quality and completeness of viral genomes.",
     citations=[citations["CheckV"]],
 )
