@@ -5,9 +5,6 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-import unittest
-from unittest.mock import patch
-
 from qiime2.plugin import ValidationError
 from qiime2.plugin.testing import TestPluginBase
 
@@ -65,57 +62,61 @@ class TestCheckVDBFormats(TestPluginBase):
         format.validate()
 
 
-class TestCheckVDBDirFmtPathMakers(unittest.TestCase):
+class TestCheckVDBDirFmtPathMakers(TestPluginBase):
     package = "q2_viromics.tests"
 
-    def setUp(self):
-        self.format = CheckVDBDirFmt("/dummy/path", mode="r")
+    def test_hmm_files_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.hmm_files_path_maker(
+            outer_dir="checkVdb", dir="checkv_hmms", name="1"
+        )
+        expected_path = "type/db/checkVdb/hmm_db/checkv_hmms/1.hmm"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "hmm_files_path_maker")
-    def test_hmm_files_path_maker(self, mock_hmm_files):
-        mock_hmm_files.return_value = "/dummy/path/hmm/dir/name.hmm"
-        result = self.format.hmm_files_path_maker("outer", "dir", "name")
-        mock_hmm_files.assert_called_once_with("outer", "dir", "name")
-        self.assertEqual(result, "/dummy/path/hmm/dir/name.hmm")
+    def test_tsv_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.tsv_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_error"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_error.tsv"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "tsv_files_genome_db_path_maker")
-    def test_tsv_files_genome_db_path_maker(self, mock_tsv_files):
-        mock_tsv_files.return_value = "/dummy/path/genome_db/name.tsv"
-        result = self.format.tsv_files_genome_db_path_maker("outer", "name")
-        mock_tsv_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/genome_db/name.tsv")
+    def test_dmnd_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.dmnd_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.dmnd"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "dmnd_files_genome_db_path_maker")
-    def test_dmnd_files_genome_db_path_maker(self, mock_dmnd_files):
-        mock_dmnd_files.return_value = "/dummy/path/genome_db/name.dmnd"
-        result = self.format.dmnd_files_genome_db_path_maker("outer", "name")
-        mock_dmnd_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/genome_db/name.dmnd")
+    def test_faa_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.faa_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.faa"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "faa_files_genome_db_path_maker")
-    def test_faa_files_genome_db_path_maker(self, mock_faa_files):
-        mock_faa_files.return_value = "/dummy/path/genome_db/name.faa"
-        result = self.format.faa_files_genome_db_path_maker("outer", "name")
-        mock_faa_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/genome_db/name.faa")
+    def test_fna_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.fna_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.fna"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "fna_files_genome_db_path_maker")
-    def test_fna_files_genome_db_path_maker(self, mock_fna_files):
-        mock_fna_files.return_value = "/dummy/path/genome_db/name.fna"
-        result = self.format.fna_files_genome_db_path_maker("outer", "name")
-        mock_fna_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/genome_db/name.fna")
+    def test_log_files_genome_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.log_files_genome_db_path_maker(
+            outer_dir="checkVdb", name="checkv_reps"
+        )
+        expected_path = "type/db/checkVdb/genome_db/checkv_reps.log"
+        self.assertEqual(str(result_path), expected_path)
 
-    @patch.object(CheckVDBDirFmt, "log_files_genome_db_path_maker")
-    def test_log_files_genome_db_path_maker(self, mock_log_files):
-        mock_log_files.return_value = "/dummy/path/genome_db/name.log"
-        result = self.format.log_files_genome_db_path_maker("outer", "name")
-        mock_log_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/genome_db/name.log")
-
-    @patch.object(CheckVDBDirFmt, "tsv_files_hmm_db_path_maker")
-    def test_tsv_files_hmm_db_path_maker(self, mock_tsv_files):
-        mock_tsv_files.return_value = "/dummy/path/hmm_db/name.tsv"
-        result = self.format.tsv_files_hmm_db_path_maker("outer", "name")
-        mock_tsv_files.assert_called_once_with("outer", "name")
-        self.assertEqual(result, "/dummy/path/hmm_db/name.tsv")
+    def test_tsv_files_hmm_db_path_maker(self):
+        obj = CheckVDBDirFmt("type/db/", mode="r")
+        result_path = obj.tsv_files_hmm_db_path_maker(
+            outer_dir="checkVdb", name="genome_lengths"
+        )
+        expected_path = "type/db/checkVdb/hmm_db/genome_lengths.tsv"
+        self.assertEqual(str(result_path), expected_path)

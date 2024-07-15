@@ -84,7 +84,7 @@ class CheckVDBDirFmt(model.DirectoryFormat):
 
     @hmm_files.set_path_maker
     def hmm_files_path_maker(self, outer_dir, dir, name):
-        return "%s/hmm/%s/%s.hmm" % (outer_dir, dir, name)
+        return "%s/hmm_db/%s/%s.hmm" % (outer_dir, dir, name)
 
     @tsv_files_genome_db.set_path_maker
     def tsv_files_genome_db_path_maker(self, outer_dir, name):
