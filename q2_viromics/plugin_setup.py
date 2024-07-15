@@ -12,8 +12,8 @@ from qiime2.plugin import Citations, Int, Plugin, Range
 from q2_viromics import __version__
 from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
-from q2_viromics.types._format import CheckVDbDirFmt
-from q2_viromics.types._type import CheckVDb
+from q2_viromics.types._format import CheckVDBDirFmt
+from q2_viromics.types._type import CheckVDB
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -31,14 +31,14 @@ plugin = Plugin(
 )
 
 plugin.register_formats(
-    CheckVDbDirFmt,
+    CheckVDBDirFmt,
 )
 
-plugin.register_semantic_types(CheckVDb)
+plugin.register_semantic_types(CheckVDB)
 
 plugin.register_artifact_class(
-    CheckVDb,
-    directory_format=CheckVDbDirFmt,
+    CheckVDB,
+    directory_format=CheckVDBDirFmt,
     description=("CheckV database."),
 )
 
@@ -47,7 +47,7 @@ plugin.methods.register_function(
     function=checkv_fetch_db,
     inputs={},
     parameters={},
-    outputs=[("database", CheckVDb)],
+    outputs=[("database", CheckVDB)],
     parameter_descriptions={},
     output_descriptions={"database": "CheckV database."},
     name="Fetch CheckV database",

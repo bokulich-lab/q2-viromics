@@ -15,11 +15,11 @@ from q2_viromics.checkv_fetch_db import checkv_download_database, checkv_fetch_d
 
 class TestCheckVFetchDb(unittest.TestCase):
     @patch("q2_viromics.checkv_fetch_db.run_command")
-    @patch("q2_viromics.checkv_fetch_db.CheckVDbDirFmt")
-    def test_checkv_fetch_db_success(self, mock_CheckVDbDirFmt, mock_run_command):
-        # Mock the CheckVDbDirFmt instance
+    @patch("q2_viromics.checkv_fetch_db.CheckVDBDirFmt")
+    def test_checkv_fetch_db_success(self, mock_CheckVDBDirFmt, mock_run_command):
+        # Mock the CheckVDBDirFmt instance
         mock_database = MagicMock()
-        mock_CheckVDbDirFmt.return_value = mock_database
+        mock_CheckVDBDirFmt.return_value = mock_database
 
         # Call the function
         result = checkv_fetch_db()
@@ -39,11 +39,11 @@ class TestCheckVFetchDb(unittest.TestCase):
         "q2_viromics.checkv_fetch_db.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
-    @patch("q2_viromics.checkv_fetch_db.CheckVDbDirFmt")
-    def test_CheckV_fetch_db_failure(self, mock_CheckVDbDirFmt, mock_run_command):
-        # Mock the CheckVDbDirFmt instance
+    @patch("q2_viromics.checkv_fetch_db.CheckVDBDirFmt")
+    def test_CheckV_fetch_db_failure(self, mock_CheckVDBDirFmt, mock_run_command):
+        # Mock the CheckVDBDirFmt instance
         mock_database = MagicMock()
-        mock_CheckVDbDirFmt.return_value = mock_database
+        mock_CheckVDBDirFmt.return_value = mock_database
 
         # Call the function and assert it raises an Exception
         with self.assertRaises(Exception) as context:

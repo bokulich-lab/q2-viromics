@@ -5,10 +5,10 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-from ._format import CheckVDbDirFmt
-from ._type import CheckVDb
+from ._format import CheckVDBDirFmt
+from ._type import CheckVDB
 
 __all__ = [
-    "CheckVDb",
-    "CheckVDbDirFmt",
+    "CheckVDB",
+    "CheckVDBDirFmt",
 ]
