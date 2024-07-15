@@ -38,7 +38,7 @@ class TestCheckvAnalysis(unittest.TestCase):
                 mock_tmp,
                 mock_sequences,
                 mock_database,
-                num_threads=10,
+                num_threads=1,
             )
 
         # Expected command
@@ -50,7 +50,7 @@ class TestCheckvAnalysis(unittest.TestCase):
             "-d",
             "/fake/database/internal_db",
             "-t",
-            "10",
+            "1",
         ]
 
         # Assert the command was called
@@ -76,7 +76,7 @@ class TestCheckvAnalysis(unittest.TestCase):
                     mock_tmp,
                     mock_sequences,
                     mock_database,
-                    num_threads=10,
+                    num_threads=1,
                 )
 
             self.assertTrue(
@@ -119,11 +119,11 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_database.path = "/fake/database"
 
         # Call the function
-        result = checkv_analysis(mock_sequences, mock_database, num_threads=10)
+        result = checkv_analysis(mock_sequences, mock_database, num_threads=1)
 
         # Assertions
         mock_checkv_end_to_end.assert_called_once_with(
-            "/fake/tmp", mock_sequences, mock_database, 10
+            "/fake/tmp", mock_sequences, mock_database, 1
         )
         mock_shutil_copy.assert_any_call("/fake/tmp/viruses.fna", str(result[0]))
         mock_shutil_copy.assert_any_call("/fake/tmp/proviruses.fna", str(result[1]))

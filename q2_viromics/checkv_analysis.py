@@ -57,7 +57,7 @@ def read_tsv_file(file_name, tmp):
 def checkv_analysis(
     sequences: DNAFASTAFormat,
     database: CheckVDBDirFmt,
-    num_threads: int = 10,
+    num_threads: int = 1,
 ) -> (
     DNAFASTAFormat,
     DNAFASTAFormat,
