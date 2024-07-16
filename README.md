@@ -2,19 +2,6 @@
 
 A [QIIME 2](https://qiime2.org) Plugin for assessing the quality and completeness of metagenome-assembled viral genomes.
 
-## Installation instructions
-
-### Install Prerequisites
-
-[Miniconda](https://conda.io/miniconda.html) provides the `conda` environment and package manager, and is currently the only supported way to install QIIME 2.
-Follow the instructions for downloading and installing Miniconda.
-
-After installing Miniconda and opening a new terminal, make sure you're running the latest version of `conda`:
-
-```bash
-conda update conda
-```
-
 ###  Install development version of `q2-viromics`
 Clone the repository:
 ```shell
