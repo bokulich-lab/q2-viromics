@@ -59,7 +59,6 @@ plugin.methods.register_function(
     citations=[citations["CheckV"]],
 )
 
-
 plugin.methods.register_function(
     function=checkv_analysis,
     inputs={
