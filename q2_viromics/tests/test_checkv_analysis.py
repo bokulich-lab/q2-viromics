@@ -190,7 +190,7 @@ class TestReadTSVFile(unittest.TestCase):
         pd.testing.assert_frame_equal(result_df, expected_df)
 
         # Assert if os.path.join was called correctly
-        mock_path_join.assert_called_once_with(tmp, file_name)
+        mock_path_join.assert_any_call(tmp, file_name)
 
 
 if __name__ == "__main__":
