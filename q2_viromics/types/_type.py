@@ -8,3 +8,4 @@
 from qiime2.plugin import SemanticType
 
 CheckVDB = SemanticType("CheckVDB")
+GenomadDB = SemanticType("GenomadDB")
