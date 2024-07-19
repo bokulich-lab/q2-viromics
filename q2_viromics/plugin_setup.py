@@ -12,8 +12,8 @@ from qiime2.plugin import Citations, Int, Plugin, Range
 from q2_viromics import __version__
 from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
-from q2_viromics.types._format import CheckVDBDirFmt
-from q2_viromics.types._type import CheckVDB
+from q2_viromics.types._format import CheckVDBDirFmt, GenomadDBDirFmt
+from q2_viromics.types._type import CheckVDB, GenomadDB
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -32,14 +32,21 @@ plugin = Plugin(
 
 plugin.register_formats(
     CheckVDBDirFmt,
+    GenomadDBDirFmt,
 )
 
-plugin.register_semantic_types(CheckVDB)
+plugin.register_semantic_types(CheckVDB, GenomadDB)
 
 plugin.register_artifact_class(
     CheckVDB,
     directory_format=CheckVDBDirFmt,
     description=("CheckV database."),
+)
+
+plugin.register_artifact_class(
+    GenomadDB,
+    directory_format=GenomadDBDirFmt,
+    description=("Genomad database."),
 )
 
 
