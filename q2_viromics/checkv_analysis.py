@@ -12,11 +12,10 @@ import tempfile
 import warnings
 
 import pandas as pd
-import qiime2
-from q2_types.feature_data import DNAFASTAFormat
+from q2_types.per_sample_sequences import ContigSequencesDirFmt
 
 from q2_viromics._utils import run_command
-from q2_viromics.types._format import CheckVDBDirFmt
+from q2_viromics.types._format import CheckVDBDirFmt, CheckVMetadataDirFmt
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -28,7 +27,7 @@ def checkv_end_to_end(tmp, sequences, database, num_threads):
     cmd = [
         "checkv",
         "end_to_end",
-        str(sequences.path),
+        str(sequences),
         str(tmp),
         "-d",
         str(internal_db_name),
@@ -55,42 +54,66 @@ def read_tsv_file(file_name, tmp):
 
 
 def checkv_analysis(
-    sequences: DNAFASTAFormat,
+    sequences: ContigSequencesDirFmt,
     database: CheckVDBDirFmt,
     num_threads: int = 1,
 ) -> (
-    DNAFASTAFormat,
-    DNAFASTAFormat,
-    qiime2.Metadata,
-    qiime2.Metadata,
-    qiime2.Metadata,
-    qiime2.Metadata,
+    ContigSequencesDirFmt,
+    ContigSequencesDirFmt,
+    CheckVMetadataDirFmt,
+    CheckVMetadataDirFmt,
+    CheckVMetadataDirFmt,
+    CheckVMetadataDirFmt,
 ):
 
-    viral_sequences = DNAFASTAFormat()
-    proviral_sequences = DNAFASTAFormat()
+    viral_sequences = ContigSequencesDirFmt()
+    proviral_sequences = ContigSequencesDirFmt()
+    quality_summary = CheckVMetadataDirFmt()
+    contamination = CheckVMetadataDirFmt()
+    completeness = CheckVMetadataDirFmt()
+    complete_genomes = CheckVMetadataDirFmt()
 
-    with tempfile.TemporaryDirectory() as tmp:
-        # Execute the "checkv end_to_end" command
-        checkv_end_to_end(tmp, sequences, database, num_threads)
+    for sample_id, contigs_fp in sequences.sample_dict().items():
+        viral_path = os.path.join(str(viral_sequences), f"{sample_id}_contigs.fa")
+        proviral_path = os.path.join(str(proviral_sequences), f"{sample_id}_contigs.fa")
+        quality_summary_path = os.path.join(
+            str(quality_summary), f"{sample_id}_quality_summary.tsv"
+        )
+        contamination_path = os.path.join(
+            str(contamination), f"{sample_id}_contamination.tsv"
+        )
+        completeness_path = os.path.join(
+            str(completeness), f"{sample_id}_completeness.tsv"
+        )
+        complete_genomes_path = os.path.join(
+            str(complete_genomes), f"{sample_id}_complete_genomes.tsv"
+        )
 
-        # Copy the viral sequences file
-        shutil.copy(os.path.join(tmp, "viruses.fna"), str(viral_sequences))
+        with tempfile.TemporaryDirectory() as tmp:
+            # Execute the "checkv end_to_end" command
+            checkv_end_to_end(tmp, contigs_fp, database, num_threads)
 
-        # Copy the proviral sequences file
-        shutil.copy(os.path.join(tmp, "proviruses.fna"), str(proviral_sequences))
+            # Define the filenames and destination paths in a list of tuples
+            files_and_destinations = [
+                ("viruses.fna", viral_path),
+                ("proviruses.fna", proviral_path),
+                ("quality_summary.tsv", quality_summary_path),
+                ("contamination.tsv", contamination_path),
+                ("completeness.tsv", completeness_path),
+                ("complete_genomes.tsv", complete_genomes_path),
+            ]
 
-        # Read the TSV files into a DataFrame
-        quality_summary_df = read_tsv_file("quality_summary.tsv", tmp)
-        contamination_df = read_tsv_file("contamination.tsv", tmp)
-        completeness_df = read_tsv_file("completeness.tsv", tmp)
-        complete_genomes_df = read_tsv_file("complete_genomes.tsv", tmp)
+            # Ensure the destination directories exist and move files
+            for filename, dst in files_and_destinations:
+                src = os.path.join(tmp, filename)
+                os.makedirs(os.path.dirname(dst), exist_ok=True)
+                shutil.move(src, dst)
 
     return (
         viral_sequences,
         proviral_sequences,
-        qiime2.Metadata(quality_summary_df),
-        qiime2.Metadata(contamination_df),
-        qiime2.Metadata(completeness_df),
-        qiime2.Metadata(complete_genomes_df),
+        quality_summary,
+        contamination,
+        completeness,
+        complete_genomes,
     )

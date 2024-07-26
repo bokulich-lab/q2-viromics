@@ -5,15 +5,19 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-from q2_types.feature_data import FeatureData, Sequence
-from q2_types.metadata import ImmutableMetadata
+from q2_types.per_sample_sequences import Contigs
+from q2_types.sample_data import SampleData
 from qiime2.plugin import Citations, Int, Plugin, Range
 
 from q2_viromics import __version__
 from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
-from q2_viromics.types._format import CheckVDBDirFmt, GenomadDBDirFmt
-from q2_viromics.types._type import CheckVDB, GenomadDB
+from q2_viromics.types._format import (
+    CheckVDBDirFmt,
+    CheckVMetadataDirFmt,
+    GenomadDBDirFmt,
+)
+from q2_viromics.types._type import CheckVDB, CheckVMetadata, GenomadDB
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -22,9 +26,8 @@ plugin = Plugin(
     version=__version__,
     website="https://github.com/bokulich-lab/q2-viromics",
     package="q2_viromics",
-    description="A QIIME 2 plugin for evaluating viral genome quality "
-    "and completeness from metagenomes and removing "
-    "host contamination.",
+    description="A QIIME 2 plugin for detecting viral genomes and assessing "
+    "their quality.",
     short_description="A QIIME 2 plugin for detecting viral genomes and assessing "
     "their quality.",
     citations=[citations["Caporaso-Bolyen-2024"]],
@@ -33,9 +36,10 @@ plugin = Plugin(
 plugin.register_formats(
     CheckVDBDirFmt,
     GenomadDBDirFmt,
+    CheckVMetadataDirFmt,
 )
 
-plugin.register_semantic_types(CheckVDB, GenomadDB)
+plugin.register_semantic_types(CheckVDB, GenomadDB, CheckVMetadata)
 
 plugin.register_artifact_class(
     CheckVDB,
@@ -49,6 +53,10 @@ plugin.register_artifact_class(
     description=("Genomad database."),
 )
 
+plugin.register_semantic_type_to_format(
+    SampleData[CheckVMetadata],
+    directory_format=CheckVMetadataDirFmt,
+)
 
 plugin.methods.register_function(
     function=checkv_fetch_db,
@@ -69,7 +77,7 @@ plugin.methods.register_function(
 plugin.methods.register_function(
     function=checkv_analysis,
     inputs={
-        "sequences": FeatureData[Sequence],
+        "sequences": SampleData[Contigs],
         "database": CheckVDB,
     },
     parameters={
@@ -83,12 +91,12 @@ plugin.methods.register_function(
         "num_threads": "Number of threads to use for prodigal-gv and DIAMOND.",
     },
     outputs=[
-        ("viruses", FeatureData[Sequence]),
-        ("proviruses", FeatureData[Sequence]),
-        ("quality_summary", ImmutableMetadata),
-        ("contamination", ImmutableMetadata),
-        ("completeness", ImmutableMetadata),
-        ("complete_genomes", ImmutableMetadata),
+        ("viruses", SampleData[Contigs]),
+        ("proviruses", SampleData[Contigs]),
+        ("quality_summary", SampleData[CheckVMetadata]),
+        ("contamination", SampleData[CheckVMetadata]),
+        ("completeness", SampleData[CheckVMetadata]),
+        ("complete_genomes", SampleData[CheckVMetadata]),
     ],
     output_descriptions={
         "viruses": "Viral sequences.",

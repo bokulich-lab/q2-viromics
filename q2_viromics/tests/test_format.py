@@ -10,6 +10,7 @@ from qiime2.plugin.testing import TestPluginBase
 
 from q2_viromics.types._format import (
     CheckVDBDirFmt,
+    CheckVMetadataDirFmt,
     GeneralBinaryFileFormat,
     GeneralTSVFormat,
     GenomadDBDirFmt,
@@ -129,3 +130,18 @@ class TestGenomadDBDirFmt(TestPluginBase):
         filepath = self.get_data_path("type/genomad_db/")
         format = GenomadDBDirFmt(filepath, mode="r")
         format.validate()
+
+
+class TestCheckVMetadataDirFmt(TestPluginBase):
+    package = "q2_viromics.tests"
+
+    def test_CheckVMetadataDirFmt(self):
+        filepath = self.get_data_path("type/checkVMetadata/")
+        format = CheckVMetadataDirFmt(filepath, mode="r")
+        format.validate()
+
+    def test_CheckVMetadataDirFmt_path_maker(self):
+        obj = CheckVMetadataDirFmt("type/checkVMetadata/", mode="r")
+        result_path = obj.metadata_files_path_maker(name="sample1_quality_summary")
+        expected_path = "type/checkVMetadata/sample1_quality_summary.tsv"
+        self.assertEqual(str(result_path), expected_path)
