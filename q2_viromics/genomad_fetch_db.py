@@ -40,7 +40,7 @@ def genomad_fetch_db() -> GenomadDBDirFmt:
     # Construct the command to fetch the geNomad database
     genomad_download_database(database)
 
-    if os.path.isdir(os.path.join(str(database), "genomad_db/.ipynb_checkpoints/")):
+    if os.path.exists(os.path.join(str(database), "genomad_db/.ipynb_checkpoints/")):
         shutil.rmtree(os.path.join(str(database), "genomad_db/.ipynb_checkpoints/"))
 
     return database

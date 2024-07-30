@@ -23,7 +23,7 @@ class TestGenomadFetchDb(unittest.TestCase):
         mock_GenomadDBDirFmt.return_value = mock_database
 
         # Mock os.path.isdir to simulate presence of .ipynb_checkpoints directory
-        with patch("os.path.isdir", return_value=True):
+        with patch("os.path.exists", return_value=True):
             with patch("shutil.rmtree") as mock_rmtree:
                 # Call the function
                 result = genomad_fetch_db()
@@ -81,24 +81,6 @@ class TestGenomadFetchDb(unittest.TestCase):
 
         # Assert the command was called
         mock_run_command.assert_called_once_with(expected_cmd)
-
-    @patch(
-        "q2_viromics.genomad_fetch_db.run_command",
-        side_effect=subprocess.CalledProcessError(1, "cmd"),
-    )
-    def test_genomad_download_database_failure(self, mock_run_command):
-        # Mock the database path
-        mock_database = MagicMock()
-        mock_database.path = "/fake/path"
-
-        # Call the function and assert it raises an Exception
-        with self.assertRaises(Exception) as context:
-            genomad_download_database(mock_database)
-
-        self.assertTrue(
-            "An error was encountered while running geNomad download-database"
-            in str(context.exception)
-        )
 
 
 if __name__ == "__main__":

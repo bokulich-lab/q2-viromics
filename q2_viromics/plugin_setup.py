@@ -61,7 +61,7 @@ plugin.methods.register_function(
     description=(
         "Fetch the geNomad database that contains the profiles of the markers "
         "that are used to classify sequences, their taxonomic information and "
-        "their functional annotation,"
+        "their functional annotation."
     ),
     citations=[citations["geNomad"]],
 )
