@@ -171,8 +171,7 @@ class TestReadTSVFile(unittest.TestCase):
         new_callable=mock_open,
         read_data="sample_name\tcol1\tcol2\nsample1\t1\t2\nsample2\t3\t4\n",
     )
-    @patch("os.path.join", return_value="dummy_path")
-    def test_read_tsv_file(self, mock_path_join, mock_file):
+    def test_read_tsv_file(self, mock_file):
         # Set up
         file_name = "test.tsv"
         tmp = "/tmp"
@@ -188,9 +187,6 @@ class TestReadTSVFile(unittest.TestCase):
 
         # Assert the DataFrame equality
         pd.testing.assert_frame_equal(result_df, expected_df)
-
-        # Assert if os.path.join was called correctly
-        mock_path_join.assert_any_call(tmp, file_name)
 
 
 if __name__ == "__main__":

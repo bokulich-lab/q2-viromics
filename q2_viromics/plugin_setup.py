@@ -12,6 +12,7 @@ from qiime2.plugin import Citations, Int, Plugin, Range
 from q2_viromics import __version__
 from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
+from q2_viromics.genomad_fetch_db import genomad_fetch_db
 from q2_viromics.types._format import CheckVDBDirFmt, GenomadDBDirFmt
 from q2_viromics.types._type import CheckVDB, GenomadDB
 
@@ -49,6 +50,21 @@ plugin.register_artifact_class(
     description=("Genomad database."),
 )
 
+plugin.methods.register_function(
+    function=genomad_fetch_db,
+    inputs={},
+    parameters={},
+    outputs=[("database", GenomadDB)],
+    parameter_descriptions={},
+    output_descriptions={"database": "geNomad database."},
+    name="Fetch geNomad database",
+    description=(
+        "Fetch the geNomad database that contains the profiles of the markers "
+        "that are used to classify sequences, their taxonomic information and "
+        "their functional annotation,"
+    ),
+    citations=[citations["geNomad"]],
+)
 
 plugin.methods.register_function(
     function=checkv_fetch_db,

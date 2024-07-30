@@ -113,86 +113,102 @@ class CheckVDBDirFmt(model.DirectoryFormat):
 
 # Directory format for the Genomad Database
 class GenomadDBDirFmt(model.DirectoryFormat):
-    genomad_db = model.File(r"genomad_db$", format=GeneralBinaryFileFormat)
+    genomad_db = model.File(r"genomad_db/genomad_db$", format=GeneralBinaryFileFormat)
     genomad_db_taxonomy = model.File(
-        r"genomad_db_taxonomy$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_db_taxonomy$", format=GeneralBinaryFileFormat
     )
     genomad_marker_metadata = model.File(
-        r"genomad_marker_metadata\.tsv$", format=GeneralTSVFormat
+        r"genomad_db/genomad_marker_metadata\.tsv$", format=GeneralTSVFormat
     )
     genomad_mini_db_mapping = model.File(
-        r"genomad_mini_db_mapping$", format=GeneralTSVFormat
+        r"genomad_db/genomad_mini_db_mapping$", format=GeneralTSVFormat
     )
     genomad_db_dbtype = model.File(
-        r"genomad_db\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_db\.dbtype$", format=GeneralBinaryFileFormat
     )
     genomad_integrase_db = model.File(
-        r"genomad_integrase_db$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_integrase_db$", format=GeneralBinaryFileFormat
     )
-    genomad_mini_db = model.File(r"genomad_mini_db$", format=GeneralBinaryFileFormat)
+    genomad_mini_db = model.File(
+        r"genomad_db/genomad_mini_db$", format=GeneralBinaryFileFormat
+    )
     genomad_mini_db_taxonomy = model.File(
-        r"genomad_mini_db_taxonomy$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_mini_db_taxonomy$", format=GeneralBinaryFileFormat
     )
-    mini_set_ids = model.File(r"mini_set_ids$", format=GeneralBinaryFileFormat)
-    names_dmp = model.File(r"names\.dmp$", format=GeneralTSVFormat)
-    genomad_db_index = model.File(r"genomad_db\.index$", format=GeneralTSVFormat)
+    mini_set_ids = model.File(
+        r"genomad_db/mini_set_ids$", format=GeneralBinaryFileFormat
+    )
+    names_dmp = model.File(r"genomad_db/names\.dmp$", format=GeneralTSVFormat)
+    genomad_db_index = model.File(
+        r"genomad_db/genomad_db\.index$", format=GeneralTSVFormat
+    )
     genomad_integrase_db_dbtype = model.File(
-        r"genomad_integrase_db\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_integrase_db\.dbtype$", format=GeneralBinaryFileFormat
     )
     genomad_mini_db_dbtype = model.File(
-        r"genomad_mini_db\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_mini_db\.dbtype$", format=GeneralBinaryFileFormat
     )
-    nodes_dmp = model.File(r"nodes\.dmp$", format=GeneralTSVFormat)
-    genomad_db_lookup = model.File(r"genomad_db\.lookup$", format=GeneralTSVFormat)
+    nodes_dmp = model.File(r"genomad_db/nodes\.dmp$", format=GeneralTSVFormat)
+    genomad_db_lookup = model.File(
+        r"genomad_db/genomad_db\.lookup$", format=GeneralTSVFormat
+    )
     genomad_integrase_db_index = model.File(
-        r"genomad_integrase_db\.index$", format=GeneralTSVFormat
+        r"genomad_db/genomad_integrase_db\.index$", format=GeneralTSVFormat
     )
     genomad_mini_db_index = model.File(
-        r"genomad_mini_db\.index$", format=GeneralTSVFormat
+        r"genomad_db/genomad_mini_db\.index$", format=GeneralTSVFormat
     )
     plasmid_hallmark_annotation = model.File(
-        r"plasmid_hallmark_annotation\.txt$", format=GeneralBinaryFileFormat
+        r"genomad_db/plasmid_hallmark_annotation\.txt$", format=GeneralBinaryFileFormat
     )
     genomad_db_source = model.File(
-        r"genomad_db\.source$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_db\.source$", format=GeneralBinaryFileFormat
     )
     genomad_integrase_db_lookup = model.File(
-        r"genomad_integrase_db\.lookup$", format=GeneralTSVFormat
+        r"genomad_db/genomad_integrase_db\.lookup$", format=GeneralTSVFormat
     )
     genomad_mini_db_lookup = model.File(
-        r"genomad_mini_db\.lookup$", format=GeneralTSVFormat
+        r"genomad_db/genomad_mini_db\.lookup$", format=GeneralTSVFormat
     )
     virus_hallmark_annotation = model.File(
-        r"virus_hallmark_annotation\.txt$", format=GeneralBinaryFileFormat
+        r"genomad_db/virus_hallmark_annotation\.txt$", format=GeneralBinaryFileFormat
     )
-    genomad_db_h = model.File(r"genomad_db_h$", format=GeneralBinaryFileFormat)
+    genomad_db_h = model.File(
+        r"genomad_db/genomad_db_h$", format=GeneralBinaryFileFormat
+    )
     genomad_integrase_db_source = model.File(
-        r"genomad_integrase_db\.source$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_integrase_db\.source$", format=GeneralBinaryFileFormat
     )
     genomad_mini_db_source = model.File(
-        r"genomad_mini_db\.source$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_mini_db\.source$", format=GeneralBinaryFileFormat
     )
-    version_txt = model.File(r"version\.txt$", format=GeneralBinaryFileFormat)
+    version_txt = model.File(
+        r"genomad_db/version\.txt$", format=GeneralBinaryFileFormat
+    )
     genomad_db_h_dbtype = model.File(
-        r"genomad_db_h\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_db_h\.dbtype$", format=GeneralBinaryFileFormat
     )
     genomad_integrase_db_h = model.File(
-        r"genomad_integrase_db_h$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_integrase_db_h$", format=GeneralBinaryFileFormat
     )
     genomad_mini_db_h = model.File(
-        r"genomad_mini_db_h$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_mini_db_h$", format=GeneralBinaryFileFormat
     )
-    genomad_db_h_index = model.File(r"genomad_db_h\.index$", format=GeneralTSVFormat)
+    genomad_db_h_index = model.File(
+        r"genomad_db/genomad_db_h\.index$", format=GeneralTSVFormat
+    )
     genomad_integrase_db_h_dbtype = model.File(
-        r"genomad_integrase_db_h\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_integrase_db_h\.dbtype$", format=GeneralBinaryFileFormat
     )
     genomad_mini_db_h_dbtype = model.File(
-        r"genomad_mini_db_h\.dbtype$", format=GeneralBinaryFileFormat
+        r"genomad_db/genomad_mini_db_h\.dbtype$", format=GeneralBinaryFileFormat
     )
-    genomad_db_mapping = model.File(r"genomad_db_mapping$", format=GeneralTSVFormat)
+    genomad_db_mapping = model.File(
+        r"genomad_db/genomad_db_mapping$", format=GeneralTSVFormat
+    )
     genomad_integrase_db_h_index = model.File(
-        r"genomad_integrase_db_h\.index$", format=GeneralTSVFormat
+        r"genomad_db/genomad_integrase_db_h\.index$", format=GeneralTSVFormat
     )
     genomad_mini_db_h_index = model.File(
-        r"genomad_mini_db_h\.index$", format=GeneralTSVFormat
+        r"genomad_db/genomad_mini_db_h\.index$", format=GeneralTSVFormat
     )
