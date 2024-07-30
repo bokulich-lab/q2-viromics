@@ -32,10 +32,10 @@ def checkv_download_database(database):
 
 # Fetch the CheckV database
 def checkv_fetch_db() -> CheckVDBDirFmt:
-    # Initialize a directory format object to store the Minimap2 index
+    # Initialize a directory format object to store a CheckV database
     database = CheckVDBDirFmt()
 
-    # Construct the command to build the Minimap2 index file
+    # Construct the command to fetch the CheckV database
     checkv_download_database(database)
 
     return database
