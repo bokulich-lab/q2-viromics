@@ -1,0 +1,10 @@
+contig_id	contig_length	provirus	proviral_length	gene_count	viral_genes	host_genes	checkv_quality	miuvig_quality	completeness	completeness_method	contamination	kmer_freq	warnings
+Caudo-circular	31801	No	NA	46	9	1	Complete	High-quality	100.0	DTR (high-confidence)	0.0	1.0
+Caudo-linear	13842	No	NA	14	11	1	Low-quality	Genome-fragment	43.2	AAI-based (high-confidence)	0.0	1.0
+Caudo-provirus	213842	No	NA	228	11	152	High-quality	High-quality	100.0	HMM-based (lower-bound)	0.0	1.02
+NCLDV-linear	1181549	No	NA	1008	799	1	High-quality	High-quality	99.21	AAI-based (high-confidence)	0.0	1.01
+ssDNA-linear	4761	No	NA	2	2	0	High-quality	High-quality	92.88	AAI-based (high-confidence)	0.0	1.02
+RNA-linear	5542	No	NA	5	4	0	Medium-quality	Genome-fragment	66.46	AAI-based (high-confidence)	0.0	1.0
+lavidaviridae-linear	8598	No	NA	9	1	0	Low-quality	Genome-fragment	43.81	AAI-based (high-confidence)	0.0	1.0
+nonviral-linear	200000	No	NA	214	0	151	Not-determined	Genome-fragment	NA	NA	0.0	1.02	no viral genes detected
+Caudo-1hallmarkgene	606	No	NA	1	0	0	Not-determined	Genome-fragment	NA	NA	0.0	1.0	no viral genes detected

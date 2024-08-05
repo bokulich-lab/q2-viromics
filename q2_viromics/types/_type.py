@@ -5,7 +5,9 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
+from q2_types.sample_data import SampleData
 from qiime2.plugin import SemanticType
 
 CheckVDB = SemanticType("CheckVDB")
 GenomadDB = SemanticType("GenomadDB")
+CheckVMetadata = SemanticType("CheckVMetadata", variant_of=SampleData.field["type"])

@@ -212,3 +212,12 @@ class GenomadDBDirFmt(model.DirectoryFormat):
     genomad_mini_db_h_index = model.File(
         r"genomad_db/genomad_mini_db_h\.index$", format=GeneralTSVFormat
     )
+
+
+# Directory format for output tsv files
+class CheckVMetadataDirFmt(model.DirectoryFormat):
+    metadata_files = model.FileCollection(r"[^/]+\.tsv$", format=GeneralTSVFormat)
+
+    @metadata_files.set_path_maker
+    def metadata_files_path_maker(self, name):
+        return "%s.tsv" % (name)

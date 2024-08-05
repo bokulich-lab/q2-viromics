@@ -11,7 +11,6 @@ import unittest
 from unittest.mock import MagicMock, mock_open, patch
 
 import pandas as pd
-import qiime2
 from q2_types.feature_data import DNAFASTAFormat
 
 from q2_viromics.checkv_analysis import (
@@ -26,8 +25,8 @@ class TestCheckvAnalysis(unittest.TestCase):
     def test_checkv_end_to_end_success(self, mock_run_command):
         # Mock the paths
         mock_tmp = "/fake/tmp"
-        mock_sequences = MagicMock(spec=DNAFASTAFormat)
-        mock_sequences.path = "/fake/sequences"
+        mock_sequences = MagicMock()
+        mock_sequences.__str__.return_value = "/fake/sequences"
         mock_database = MagicMock()
         mock_database.path = "/fake/database"
         mock_database_listdir = ["internal_db"]
@@ -85,19 +84,15 @@ class TestCheckvAnalysis(unittest.TestCase):
             )
 
     @patch("q2_viromics.checkv_analysis.checkv_end_to_end")
-    @patch("q2_viromics.checkv_analysis.DNAFASTAFormat")
-    @patch("q2_viromics.checkv_analysis.pd.read_csv")
-    @patch("shutil.copy")
+    @patch("shutil.move")
     @patch("tempfile.TemporaryDirectory")
     def test_checkv_analysis_success(
         self,
         mock_tempdir,
-        mock_shutil_copy,
-        mock_read_csv,
-        mock_DNAFASTAFormat,
+        mock_shutil_move,
         mock_checkv_end_to_end,
     ):
-        # Mock the context managers
+        # Mock the temporary directory context manager
         mock_tempdir.return_value.__enter__.return_value = "/fake/tmp"
 
         # Mock the data frames with string indices
@@ -105,64 +100,49 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_contamination_df = pd.DataFrame({"mock": ["data"]}, index=["sample_2"])
         mock_completeness_df = pd.DataFrame({"mock": ["data"]}, index=["sample_3"])
         mock_complete_genomes_df = pd.DataFrame({"mock": ["data"]}, index=["sample_4"])
-        mock_read_csv.side_effect = [
-            mock_quality_summary_df,
-            mock_contamination_df,
-            mock_completeness_df,
-            mock_complete_genomes_df,
-        ]
+
+        # Set valid index names for Qiime2 Metadata
+        mock_quality_summary_df.index.name = "sample-id"
+        mock_contamination_df.index.name = "sample-id"
+        mock_completeness_df.index.name = "sample-id"
+        mock_complete_genomes_df.index.name = "sample-id"
 
         # Mock the sequences and database
-        mock_sequences = MagicMock(spec=DNAFASTAFormat)
-        mock_sequences.path = "/fake/sequences"
+        mock_sequences = MagicMock()
+        mock_sequences.sample_dict.return_value = {"sample_1": "/fake/sequences"}
+
         mock_database = MagicMock()
-        mock_database.path = "/fake/database"
 
         # Call the function
         result = checkv_analysis(mock_sequences, mock_database, num_threads=1)
 
-        # Assertions
+        # Assertions for checkv_end_to_end call
         mock_checkv_end_to_end.assert_called_once_with(
-            "/fake/tmp", mock_sequences, mock_database, 1
+            "/fake/tmp", "/fake/sequences", mock_database, 1
         )
-        mock_shutil_copy.assert_any_call("/fake/tmp/viruses.fna", str(result[0]))
-        mock_shutil_copy.assert_any_call("/fake/tmp/proviruses.fna", str(result[1]))
-        mock_read_csv.assert_any_call(
+
+        # Assertions for file movements
+        mock_shutil_move.assert_any_call(
+            "/fake/tmp/viruses.fna", str(result[0]) + "/sample_1_contigs.fa"
+        )
+        mock_shutil_move.assert_any_call(
+            "/fake/tmp/proviruses.fna", str(result[1]) + "/sample_1_contigs.fa"
+        )
+        mock_shutil_move.assert_any_call(
             "/fake/tmp/quality_summary.tsv",
-            sep="\t",
-            na_values=["NA", "", "NaN"],
-            index_col=0,
+            str(result[2]) + "/sample_1_quality_summary.tsv",
         )
-        mock_read_csv.assert_any_call(
+        mock_shutil_move.assert_any_call(
             "/fake/tmp/contamination.tsv",
-            sep="\t",
-            na_values=["NA", "", "NaN"],
-            index_col=0,
+            str(result[3]) + "/sample_1_contamination.tsv",
         )
-        mock_read_csv.assert_any_call(
-            "/fake/tmp/completeness.tsv",
-            sep="\t",
-            na_values=["NA", "", "NaN"],
-            index_col=0,
+        mock_shutil_move.assert_any_call(
+            "/fake/tmp/completeness.tsv", str(result[4]) + "/sample_1_completeness.tsv"
         )
-        mock_read_csv.assert_any_call(
+        mock_shutil_move.assert_any_call(
             "/fake/tmp/complete_genomes.tsv",
-            sep="\t",
-            na_values=["NA", "", "NaN"],
-            index_col=0,
+            str(result[5]) + "/sample_1_complete_genomes.tsv",
         )
-
-        # Convert the DataFrame to Metadata
-        expected_quality_summary_metadata = qiime2.Metadata(mock_quality_summary_df)
-        expected_contamination_metadata = qiime2.Metadata(mock_contamination_df)
-        expected_completeness_metadata = qiime2.Metadata(mock_completeness_df)
-        expected_complete_genomes_metadata = qiime2.Metadata(mock_complete_genomes_df)
-
-        # Verify the Metadata
-        self.assertEqual(result[2], expected_quality_summary_metadata)
-        self.assertEqual(result[3], expected_contamination_metadata)
-        self.assertEqual(result[4], expected_completeness_metadata)
-        self.assertEqual(result[5], expected_complete_genomes_metadata)
 
 
 class TestReadTSVFile(unittest.TestCase):
