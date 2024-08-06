@@ -11,11 +11,10 @@ import subprocess
 import tempfile
 import warnings
 
-import pandas as pd
 from q2_types.per_sample_sequences import ContigSequencesDirFmt
 
 from q2_viromics._utils import run_command
-from q2_viromics.types._format import CheckVDBDirFmt, CheckVMetadataDirFmt
+from q2_viromics.types._format import CheckVDBDirFmt, ViromicsMetadataDirFmt
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -45,14 +44,6 @@ def checkv_end_to_end(tmp, sequences, database, num_threads):
         )
 
 
-def read_tsv_file(file_name, tmp):
-    df = pd.read_csv(
-        os.path.join(tmp, file_name), sep="\t", na_values=["NA", "", "NaN"], index_col=0
-    )
-    df.index.name = "sample_name"
-    return df
-
-
 def checkv_analysis(
     sequences: ContigSequencesDirFmt,
     database: CheckVDBDirFmt,
@@ -60,18 +51,18 @@ def checkv_analysis(
 ) -> (
     ContigSequencesDirFmt,
     ContigSequencesDirFmt,
-    CheckVMetadataDirFmt,
-    CheckVMetadataDirFmt,
-    CheckVMetadataDirFmt,
-    CheckVMetadataDirFmt,
+    ViromicsMetadataDirFmt,
+    ViromicsMetadataDirFmt,
+    ViromicsMetadataDirFmt,
+    ViromicsMetadataDirFmt,
 ):
 
     viral_sequences = ContigSequencesDirFmt()
     proviral_sequences = ContigSequencesDirFmt()
-    quality_summary = CheckVMetadataDirFmt()
-    contamination = CheckVMetadataDirFmt()
-    completeness = CheckVMetadataDirFmt()
-    complete_genomes = CheckVMetadataDirFmt()
+    quality_summary = ViromicsMetadataDirFmt()
+    contamination = ViromicsMetadataDirFmt()
+    completeness = ViromicsMetadataDirFmt()
+    complete_genomes = ViromicsMetadataDirFmt()
 
     for sample_id, contigs_fp in sequences.sample_dict().items():
         viral_path = os.path.join(str(viral_sequences), f"{sample_id}_contigs.fa")

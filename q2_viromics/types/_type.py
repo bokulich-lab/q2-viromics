@@ -10,4 +10,4 @@ from qiime2.plugin import SemanticType
 
 CheckVDB = SemanticType("CheckVDB")
 GenomadDB = SemanticType("GenomadDB")
-CheckVMetadata = SemanticType("CheckVMetadata", variant_of=SampleData.field["type"])
+ViromicsMetadata = SemanticType("ViromicsMetadata", variant_of=SampleData.field["type"])
