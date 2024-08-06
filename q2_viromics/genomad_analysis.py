@@ -86,12 +86,6 @@ def genomad_analysis(
     virus_summary = ViromicsMetadataDirFmt()
 
     for id, contigs_fp in sequences.sample_dict().items():
-
-        viral_path = os.path.join(str(viruses), f"{id}_contigs.fa")
-        proviral_path = os.path.join(str(proviruses), f"{id}_contigs.fa")
-        plasmids_path = os.path.join(str(plasmids), f"{id}_contigs.fa")
-        virus_summary_path = os.path.join(str(virus_summary), f"{id}_virus_summary.tsv")
-
         with tempfile.TemporaryDirectory() as tmp:
             # Execute the "genomad end_to_end" command
             genomad_end_to_end(
@@ -104,24 +98,23 @@ def genomad_analysis(
                 min_number_genes,
                 conservative_taxonomy,
             )
-
             # Define the filenames and destination paths in a list of tuples
             files_and_destinations = [
                 (
                     f"{id}_contigs_summary/{id}_contigs_virus.fna",
-                    viral_path,
+                    os.path.join(str(viruses), f"{id}_contigs.fa"),
                 ),
                 (
                     f"{id}_contigs_find_proviruses/{id}_contigs_provirus.fna",
-                    proviral_path,
+                    os.path.join(str(proviruses), f"{id}_contigs.fa"),
                 ),
                 (
                     f"{id}_contigs_summary/{id}_contigs_plasmid.fna",
-                    plasmids_path,
+                    os.path.join(str(plasmids), f"{id}_contigs.fa"),
                 ),
                 (
                     f"{id}_contigs_summary/{id}_contigs_virus_summary.tsv",
-                    virus_summary_path,
+                    os.path.join(str(virus_summary), f"{id}_virus_summary.tsv"),
                 ),
             ]
 
