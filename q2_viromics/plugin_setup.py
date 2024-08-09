@@ -5,6 +5,8 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
+import importlib
+
 from q2_types.per_sample_sequences import Contigs
 from q2_types.sample_data import SampleData
 from qiime2.plugin import Bool, Citations, Float, Int, Plugin, Range
@@ -177,3 +179,5 @@ plugin.methods.register_function(
     "classify viral, proviral, and plasmid sequences.",
     citations=[citations["geNomad"]],
 )
+
+importlib.import_module("q2_viromics.types._transformer")

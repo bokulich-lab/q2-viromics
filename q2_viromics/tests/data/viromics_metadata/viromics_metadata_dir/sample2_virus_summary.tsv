@@ -1,0 +1,11 @@
+seq_name	length	topology	coordinates	n_genes	genetic_code	virus_score	fdr	n_hallmarks	marker_enrichment	taxonomy
+k141_837-flag=0-multi=4.9653-len=2907	2907	No terminal repeats	NA	8	11	0.9939	NA	0	9.7306	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_5987-flag=1-multi=47.0000-len=12282	12282	No terminal repeats	NA	13	11	0.9939	NA	4	13.5519	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_17181-flag=0-multi=9.0000-len=4402	4402	No terminal repeats	NA	13	11	0.9938	NA	0	12.7671	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_10619-flag=0-multi=8.9777-len=4455	4455	No terminal repeats	NA	5	11	0.9933	NA	3	8.5021	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_14443-flag=1-multi=15.8228-len=9200	9200	No terminal repeats	NA	14	11	0.9929	NA	3	14.1798	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_2008-flag=0-multi=13.9560-len=3683	3683	No terminal repeats	NA	7	11	0.9929	NA	2	9.8188	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_3972-flag=0-multi=5.9662-len=1915	1915	No terminal repeats	NA	5	11	0.9928	NA	4	8.5857	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_11561-flag=1-multi=18.0000-len=5275	5275	No terminal repeats	NA	10	11	0.9917	NA	0	9.5654	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_13362-flag=0-multi=12.2598-len=8364	8364	No terminal repeats	NA	9	11	0.9909	NA	2	13.1797	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
+k141_9407-flag=1-multi=2.0000-len=2517	2517	No terminal repeats	NA	5	11	0.9906	NA	3	7.7399	Viruses;Duplodnaviria;Heunggongvirae;Uroviricota;Caudoviricetes;;
