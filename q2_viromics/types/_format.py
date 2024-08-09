@@ -215,7 +215,7 @@ class GenomadDBDirFmt(model.DirectoryFormat):
 
 
 # Directory format for output tsv files
-class CheckVMetadataDirFmt(model.DirectoryFormat):
+class ViromicsMetadataDirFmt(model.DirectoryFormat):
     metadata_files = model.FileCollection(r"[^/]+\.tsv$", format=GeneralTSVFormat)
 
     @metadata_files.set_path_maker

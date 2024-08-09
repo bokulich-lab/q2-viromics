@@ -8,16 +8,12 @@
 
 import subprocess
 import unittest
-from unittest.mock import MagicMock, mock_open, patch
+from unittest.mock import MagicMock, patch
 
 import pandas as pd
 from q2_types.feature_data import DNAFASTAFormat
 
-from q2_viromics.checkv_analysis import (
-    checkv_analysis,
-    checkv_end_to_end,
-    read_tsv_file,
-)
+from q2_viromics.checkv_analysis import checkv_analysis, checkv_end_to_end
 
 
 class TestCheckvAnalysis(unittest.TestCase):
@@ -143,30 +139,6 @@ class TestCheckvAnalysis(unittest.TestCase):
             "/fake/tmp/complete_genomes.tsv",
             str(result[5]) + "/sample_1_complete_genomes.tsv",
         )
-
-
-class TestReadTSVFile(unittest.TestCase):
-    @patch(
-        "builtins.open",
-        new_callable=mock_open,
-        read_data="sample_name\tcol1\tcol2\nsample1\t1\t2\nsample2\t3\t4\n",
-    )
-    def test_read_tsv_file(self, mock_file):
-        # Set up
-        file_name = "test.tsv"
-        tmp = "/tmp"
-
-        # Expected DataFrame
-        expected_df = pd.DataFrame(
-            {"col1": [1, 3], "col2": [2, 4]}, index=["sample1", "sample2"]
-        )
-        expected_df.index.name = "sample_name"
-
-        # Call the function
-        result_df = read_tsv_file(file_name, tmp)
-
-        # Assert the DataFrame equality
-        pd.testing.assert_frame_equal(result_df, expected_df)
 
 
 if __name__ == "__main__":

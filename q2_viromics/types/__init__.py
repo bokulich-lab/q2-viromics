@@ -5,14 +5,14 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-from ._format import CheckVDBDirFmt, CheckVMetadataDirFmt, GenomadDBDirFmt
-from ._type import CheckVDB, CheckVMetadata, GenomadDB
+from ._format import CheckVDBDirFmt, GenomadDBDirFmt, ViromicsMetadataDirFmt
+from ._type import CheckVDB, GenomadDB, ViromicsMetadata
 
 __all__ = [
     "CheckVDB",
-    "CheckVMetadata",
+    "ViromicsMetadata",
     "GenomadDB",
     "CheckVDBDirFmt",
-    "CheckVMetadataDirFmt",
+    "ViromicsMetadataDirFmt",
     "GenomadDBDirFmt",
 ]
