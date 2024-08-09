@@ -16,8 +16,7 @@ from ..plugin_setup import plugin
 from ._format import ViromicsMetadataDirFmt
 
 
-@plugin.register_transformer
-def _1(data_path: ViromicsMetadataDirFmt) -> qiime2.Metadata:
+def combine_sample_metadata(data_path):
     df_list = []
 
     for file_name in os.listdir(str(data_path)):
@@ -44,4 +43,9 @@ def _1(data_path: ViromicsMetadataDirFmt) -> qiime2.Metadata:
     combined_df.index.name = "id"
 
     # Return the combined DataFrame as a qiime2.Metadata object
-    return qiime2.Metadata(combined_df)
+    return combined_df
+
+
+@plugin.register_transformer
+def _1(data_path: ViromicsMetadataDirFmt) -> qiime2.Metadata:
+    return qiime2.Metadata(combine_sample_metadata(data_path))
