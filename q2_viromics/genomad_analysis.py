@@ -102,19 +102,19 @@ def genomad_analysis(
             files_and_destinations = [
                 (
                     f"{id}_contigs_summary/{id}_contigs_virus.fna",
-                    os.path.join(str(viruses), f"{id}_contigs.fa"),
+                    f"{viruses}/{id}_contigs.fa",
                 ),
                 (
                     f"{id}_contigs_find_proviruses/{id}_contigs_provirus.fna",
-                    os.path.join(str(proviruses), f"{id}_contigs.fa"),
+                    f"{proviruses}/{id}_contigs.fa",
                 ),
                 (
                     f"{id}_contigs_summary/{id}_contigs_plasmid.fna",
-                    os.path.join(str(plasmids), f"{id}_contigs.fa"),
+                    f"{plasmids}/{id}_contigs.fa",
                 ),
                 (
                     f"{id}_contigs_summary/{id}_contigs_virus_summary.tsv",
-                    os.path.join(str(virus_summary), f"{id}_virus_summary.tsv"),
+                    f"{virus_summary}/{id}_virus_summary.tsv",
                 ),
             ]
 
