@@ -54,7 +54,6 @@ def checkv_analysis(
     ViromicsMetadataDirFmt,
     ViromicsMetadataDirFmt,
     ViromicsMetadataDirFmt,
-    ViromicsMetadataDirFmt,
 ):
 
     viral_sequences = ContigSequencesDirFmt()
@@ -62,7 +61,6 @@ def checkv_analysis(
     quality_summary = ViromicsMetadataDirFmt()
     contamination = ViromicsMetadataDirFmt()
     completeness = ViromicsMetadataDirFmt()
-    complete_genomes = ViromicsMetadataDirFmt()
 
     for sample_id, contigs_fp in sequences.sample_dict().items():
         viral_path = os.path.join(str(viral_sequences), f"{sample_id}_contigs.fa")
@@ -76,10 +74,6 @@ def checkv_analysis(
         completeness_path = os.path.join(
             str(completeness), f"{sample_id}_completeness.tsv"
         )
-        complete_genomes_path = os.path.join(
-            str(complete_genomes), f"{sample_id}_complete_genomes.tsv"
-        )
-
         with tempfile.TemporaryDirectory() as tmp:
             # Execute the "checkv end_to_end" command
             checkv_end_to_end(tmp, contigs_fp, database, num_threads)
@@ -91,7 +85,6 @@ def checkv_analysis(
                 ("quality_summary.tsv", quality_summary_path),
                 ("contamination.tsv", contamination_path),
                 ("completeness.tsv", completeness_path),
-                ("complete_genomes.tsv", complete_genomes_path),
             ]
 
             # Ensure the destination directories exist and move files
@@ -106,5 +99,4 @@ def checkv_analysis(
         quality_summary,
         contamination,
         completeness,
-        complete_genomes,
     )
