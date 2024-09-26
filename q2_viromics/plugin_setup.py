@@ -116,7 +116,6 @@ plugin.methods.register_function(
         ("quality_summary", SampleData[ViromicsMetadata]),
         ("contamination", SampleData[ViromicsMetadata]),
         ("completeness", SampleData[ViromicsMetadata]),
-        ("complete_genomes", SampleData[ViromicsMetadata]),
     ],
     output_descriptions={
         "viruses": "Viral sequences.",
@@ -125,7 +124,6 @@ plugin.methods.register_function(
         "contamination.",
         "contamination": "Details on contamination levels, viral and host genes.",
         "completeness": "Completeness estimates and confidence levels.",
-        "complete_genomes": "Complete genomes with predictions.",
     },
     name="Analysis of viral genomes",
     description="Assessing the quality and completeness of viral genomes.",

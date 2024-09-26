@@ -135,10 +135,6 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_shutil_move.assert_any_call(
             "/fake/tmp/completeness.tsv", str(result[4]) + "/sample_1_completeness.tsv"
         )
-        mock_shutil_move.assert_any_call(
-            "/fake/tmp/complete_genomes.tsv",
-            str(result[5]) + "/sample_1_complete_genomes.tsv",
-        )
 
 
 if __name__ == "__main__":
