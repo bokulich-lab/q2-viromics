@@ -11,7 +11,8 @@ from q2_types.per_sample_sequences import Contigs
 from q2_types.sample_data import SampleData
 from qiime2.plugin import Bool, Citations, Float, Int, Plugin, Range
 
-from q2_viromics import __version__
+import q2_viromics
+
 from q2_viromics.checkv_analysis import checkv_analysis
 from q2_viromics.checkv_fetch_db import checkv_fetch_db
 from q2_viromics.genomad_analysis import genomad_analysis
@@ -27,7 +28,7 @@ citations = Citations.load("citations.bib", package="q2_viromics")
 
 plugin = Plugin(
     name="viromics",
-    version=__version__,
+    version=q2_viromics.__version__,
     website="https://github.com/bokulich-lab/q2-viromics",
     package="q2_viromics",
     description="A QIIME 2 plugin for detecting viral genomes and assessing "
