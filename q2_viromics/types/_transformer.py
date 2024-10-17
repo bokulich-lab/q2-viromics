@@ -17,7 +17,9 @@ from ._format import ViromicsMetadataDirFmt
 def combine_sample_metadata(data_path):
     df_list = []
 
-    for file_name in os.listdir(str(data_path)):
+    # need to sort the contents of the data path
+    # to ensure consistency between operating systems
+    for file_name in sorted(os.listdir(str(data_path))):
         file_path = os.path.join(str(data_path), file_name)
         # Read the file into a DataFrame
         df = pd.read_csv(file_path, sep="\t")

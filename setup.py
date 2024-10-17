@@ -23,7 +23,8 @@ setup(
     description=description,
     url="https://github.com/bokulich-lab/q2-viromics",
     entry_points={
-        "qiime2.plugins": ["q2_viromics=" "q2_viromics" ".plugin_setup:plugin"]
+        "qiime2.plugins":
+            ["q2-viromics=q2_viromics.plugin_setup:plugin"]
     },
     package_data={
         "q2_viromics": ["citations.bib"],
