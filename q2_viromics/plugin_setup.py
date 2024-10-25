@@ -9,7 +9,7 @@ import importlib
 
 from q2_types.per_sample_sequences import Contigs
 from q2_types.sample_data import SampleData
-from qiime2.plugin import Bool, Citations, Float, Int, Plugin, Range
+from qiime2.plugin import Citations, Int, Plugin, Range
 
 import q2_viromics
 
