@@ -12,7 +12,7 @@ cd q2-viromics
 Then, run:
 
 ```shell
-mamba create -n q2-viromics -c conda-forge -c bioconda -c https://packages.qiime2.org/qiime2/2024.10/metagenome/passed/ -c defaults q2cli q2-types checkv genomad pyhmmer
+mamba create -n q2-viromics -c conda-forge -c bioconda -c https://packages.qiime2.org/qiime2/2024.10/metagenome/passed/ -c defaults q2cli q2-types checkv pyhmmer
 ```
 
 ###  Activate q2-viromics environment
@@ -21,19 +21,8 @@ conda activate q2-viromics
 ```
 
 
-
 ### Test it out!
 #### Download sample input [datasets](https://polybox.ethz.ch/index.php/s/9jlQ4oyDWvWyvpB)
-
-Fetch the geNomad database.
-```bash
-qiime viromics genomad-fetch-db --o-database genomad_db.qza --verbose
-```
-
-Run the geNomad analysis.
-```bash
-qiime viromics genomad-analysis --i-sequences input_sequences.qza --i-database genomad_db.qza --p-num-threads 8 --p-splits 8 --output-dir genomad_output --verbose
-```
 
 Fetch the checkV database.
 ```bash
