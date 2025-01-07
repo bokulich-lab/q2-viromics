@@ -16,5 +16,5 @@ qiime viromics checkv-fetch-db --o-database checkV_db.qza --verbose
 
 Run the CheckV analysis:
 ```bash
-qiime viromics checkv-analysis --i-sequences genomad_output/viruses.qza --i-database checkV_db.qza --p-num-threads 4 --output-dir checkV_output --verbose
+qiime viromics checkv-analysis --i-sequences input_sequences.qza --i-database checkV_db.qza --p-num-threads 4 --output-dir checkV_output --verbose
 ```
