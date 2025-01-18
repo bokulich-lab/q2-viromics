@@ -22,6 +22,11 @@ requirements:
     - checkv
     - pyhmmer
 
+  build:
+    - python {{ python }}
+    - setuptools
+    - versioningit
+
 test:
   requires:
     - parameterized
