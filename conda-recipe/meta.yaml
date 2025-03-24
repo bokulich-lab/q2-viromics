@@ -16,9 +16,9 @@ requirements:
     - wheel
 
   run:
-    - qiime2 {{ qiime2_epoch }}.*
-    - q2-metadata {{ qiime2_epoch }}.*
-    - q2-types {{ qiime2_epoch }}.*
+    - qiime2 >={{ qiime2 }}
+    - q2-metadata >={{ q2_metadata }}
+    - q2-types >={{ q2_types }}
     - checkv
     - pyhmmer
 
