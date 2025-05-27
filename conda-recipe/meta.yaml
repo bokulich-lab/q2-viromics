@@ -1,9 +1,6 @@
-{% set data = load_setup_py_data() %}
-{% set version = data.get('version') or 'placehold' %}
-
 package:
   name: q2-viromics
-  version: {{ version }}
+  version: {{ PLUGIN_VERSION }}
 
 source:
   path: ..
@@ -15,25 +12,30 @@ requirements:
   host:
     - python {{ python }}
     - setuptools
+    - versioningit
+    - wheel
 
   run:
-    - python {{ python }}
-    - qiime2 {{ qiime2_epoch }}.*
-    - q2-metadata {{ qiime2_epoch }}.*
-    - q2-types {{ qiime2_epoch }}.*
+    - qiime2 >={{ qiime2 }}
+    - q2-metadata >={{ q2_metadata }}
+    - q2-types >={{ q2_types }}
     - checkv
     - pyhmmer
     - virsorter=2
 
+  build:
+    - python {{ python }}
+    - setuptools
+    - versioningit
+
 test:
   requires:
-    - coverage
-    - pytest-cov
+    - parameterized
   imports:
     - q2_viromics
     - qiime2.plugins.viromics
   commands:
-    - pytest --cov q2_viromics --cov-report xml:coverage.xml --pyargs q2_viromics
+    - pytest --pyargs q2_viromics
 
 about:
   home: https://github.com/bokulich-lab/q2-viromics
