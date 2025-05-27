@@ -6,6 +6,6 @@
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
 from .db import checkv_fetch_db
-from .analysis import checkv_analysis
+from .analysis import checkv_run
 
-__all__ = ["checkv_fetch_db", "checkv_analysis"]
+__all__ = ["checkv_fetch_db", "checkv_run"]

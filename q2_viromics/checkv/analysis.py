@@ -44,7 +44,7 @@ def checkv_end_to_end(tmp, sequences, database, num_threads):
         )
 
 
-def checkv_analysis(
+def checkv_run(
     sequences: ContigSequencesDirFmt,
     database: CheckVDBDirFmt,
     num_threads: int = 1,
