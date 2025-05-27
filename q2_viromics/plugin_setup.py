@@ -148,7 +148,8 @@ plugin.methods.register_function(
         "viral_score": "Viral score table.",
         "viral_boundary": "Viral boundary table.",
     },
-    name="Identify viral sequences and produce corresponding metadata with VirSorter 2.",
+    name="Identify viral sequences and produce corresponding "
+         "metadata with VirSorter 2.",
     description="Performs analysis for identifying and categorizing viral "
     "sequences from metagenomic data using VirSorter2 and provides "
     "corresponding metadata data.",
