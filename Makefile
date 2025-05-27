@@ -1,4 +1,4 @@
-.PHONY: all lint test install dev clean distclean
+.PHONY: all lint test test-cov install dev clean distclean
 
 PYTHON ?= python
 
@@ -12,11 +12,10 @@ test: all
 	py.test
 
 test-cov: all
-	coverage run -m pytest
-	coverage xml
+	python -m pytest --cov=q2_viromics -n 4 && coverage xml -o coverage.xml
 
 install: all
-	pip install .
+	$(PYTHON) -m pip install -v .
 
 dev: all
 	pip install -e .

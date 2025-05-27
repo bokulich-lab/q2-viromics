@@ -10,7 +10,7 @@ import os
 import pandas as pd
 import qiime2
 
-from ..plugin_setup import plugin
+from q2_viromics.plugin_setup import plugin
 from ._format import ViromicsMetadataDirFmt
 
 

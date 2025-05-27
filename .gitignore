@@ -70,3 +70,4 @@ package-lock.json
 
 #VSCode Workspace Files
 .vscode/
+.idea/

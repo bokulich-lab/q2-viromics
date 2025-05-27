@@ -13,13 +13,14 @@ from qiime2.plugin import Citations, Int, Plugin, Range
 
 import q2_viromics
 
-from q2_viromics.checkv_analysis import checkv_analysis
-from q2_viromics.checkv_fetch_db import checkv_fetch_db
-from q2_viromics.types._format import (
+from q2_viromics.checkv.analysis import checkv_analysis
+from q2_viromics.checkv.db import checkv_fetch_db
+from q2_viromics.checkv.types import (
     CheckVDBDirFmt,
     ViromicsMetadataDirFmt,
+    CheckVDB,
+    ViromicsMetadata
 )
-from q2_viromics.types._type import CheckVDB, ViromicsMetadata
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -105,4 +106,4 @@ plugin.methods.register_function(
     citations=[citations["CheckV"]],
 )
 
-importlib.import_module("q2_viromics.types._transformer")
+importlib.import_module("q2_viromics.checkv.types._transformer")

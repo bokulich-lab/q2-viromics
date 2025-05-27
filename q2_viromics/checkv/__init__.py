@@ -5,8 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
+from .db import checkv_fetch_db
+from .analysis import checkv_analysis
 
-try:
-    from ._version import __version__
-except ModuleNotFoundError:
-    __version__ = '0.0.0+notfound'
+__all__ = ["checkv_fetch_db", "checkv_analysis"]
