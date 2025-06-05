@@ -13,7 +13,7 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 from q2_types.feature_data import DNAFASTAFormat
 
-from q2_viromics.checkv.analysis import checkv_analysis, checkv_end_to_end
+from q2_viromics.checkv.analysis import checkv_run, checkv_end_to_end
 
 
 class TestCheckvAnalysis(unittest.TestCase):
@@ -110,7 +110,7 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_database = MagicMock()
 
         # Call the function
-        result = checkv_analysis(mock_sequences, mock_database, num_threads=1)
+        result = checkv_run(mock_sequences, mock_database, num_threads=1)
 
         # Assertions for checkv_end_to_end call
         mock_checkv_end_to_end.assert_called_once_with(
