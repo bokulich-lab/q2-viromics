@@ -8,7 +8,7 @@
 import subprocess
 
 from q2_viromics.utils import run_command
-from q2_viromics.checkv.types._format import CheckVDBDirFmt
+from q2_viromics.types import CheckVDBDirFmt
 
 
 # Create the command to fetch the CheckV database

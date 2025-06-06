@@ -15,7 +15,7 @@ import qiime2
 from q2_types.feature_data import DNAFASTAFormat
 
 from q2_viromics.utils import run_command
-from q2_viromics.virsorter2.types._format import Virsorter2DbDirFmt
+from q2_viromics.types import Virsorter2DbDirFmt
 
 
 # Create the command to fetch the Virsorter2 database

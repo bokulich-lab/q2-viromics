@@ -9,11 +9,10 @@ import os
 import shutil
 import subprocess
 
-from q2_viromics._utils import run_command
+from q2_viromics.utils import run_command
 from q2_viromics.types._format import GenomadDBDirFmt
 
 
-# Create the command to fetch the geNomad database
 def genomad_download_database(database):
     cmd = [
         "genomad",
@@ -32,7 +31,6 @@ def genomad_download_database(database):
         )
 
 
-# Fetch the geNomad database
 def genomad_fetch_db() -> GenomadDBDirFmt:
     # Initialize a directory format object to store a geNomad database
     database = GenomadDBDirFmt()

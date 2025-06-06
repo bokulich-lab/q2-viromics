@@ -11,12 +11,12 @@ import subprocess
 import unittest
 from unittest.mock import MagicMock, patch
 
-from q2_viromics.genomad_fetch_db import genomad_download_database, genomad_fetch_db
+from q2_viromics.genomad.db import genomad_download_database, genomad_fetch_db
 
 
 class TestGenomadFetchDb(unittest.TestCase):
-    @patch("q2_viromics.genomad_fetch_db.run_command")
-    @patch("q2_viromics.genomad_fetch_db.GenomadDBDirFmt")
+    @patch("q2_viromics.genomad.db.run_command")
+    @patch("q2_viromics.genomad.db.GenomadDBDirFmt")
     def test_genomad_fetch_db_success(self, mock_GenomadDBDirFmt, mock_run_command):
         # Mock the GenomadDBDirFmt instance
         mock_database = MagicMock()
@@ -45,10 +45,10 @@ class TestGenomadFetchDb(unittest.TestCase):
                 self.assertEqual(result, mock_database)
 
     @patch(
-        "q2_viromics.genomad_fetch_db.run_command",
+        "q2_viromics.genomad.db.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
-    @patch("q2_viromics.genomad_fetch_db.GenomadDBDirFmt")
+    @patch("q2_viromics.genomad.db.GenomadDBDirFmt")
     def test_genomad_fetch_db_failure(self, mock_GenomadDBDirFmt, mock_run_command):
         # Mock the GenomadDBDirFmt instance
         mock_database = MagicMock()
@@ -63,7 +63,7 @@ class TestGenomadFetchDb(unittest.TestCase):
             in str(context.exception)
         )
 
-    @patch("q2_viromics.genomad_fetch_db.run_command")
+    @patch("q2_viromics.genomad.db.run_command")
     def test_genomad_download_database_success(self, mock_run_command):
         # Mock the database path
         mock_database = MagicMock()

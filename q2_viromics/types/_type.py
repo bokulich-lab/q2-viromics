@@ -5,14 +5,10 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
-from ._format import CheckVDBDirFmt, GenomadDBDirFmt, ViromicsMetadataDirFmt
-from ._type import CheckVDB, GenomadDB, ViromicsMetadata
+from q2_types.sample_data import SampleData
+from qiime2.plugin import SemanticType
 
-__all__ = [
-    "CheckVDB",
-    "ViromicsMetadata",
-    "GenomadDB",
-    "CheckVDBDirFmt",
-    "ViromicsMetadataDirFmt",
-    "GenomadDBDirFmt",
-]
+CheckVDB = SemanticType("CheckVDB")
+GenomadDB = SemanticType("GenomadDB")
+ViromicsMetadata = SemanticType("ViromicsMetadata", variant_of=SampleData.field["type"])
+Virsorter2Db = SemanticType("Virsorter2Db")

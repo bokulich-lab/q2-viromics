@@ -6,25 +6,32 @@
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
 from ._format import (
-    GeneralBinaryFileFormat,
+    CheckVDBDirFmt,
+    GenomadDBDirFmt,
+    ViromicsMetadataDirFmt,
+    Virsorter2DbDirFmt,
     GeneralTSVFormat,
+    GeneralBinaryFileFormat,
     HallmarkGeneListFormat,
     HMMFormat,
-    RbsCatetoryFormat,
     RbsCatetoryNotesFormat,
-    Virsorter2DbDirFmt,
+    RbsCatetoryFormat
 )
-from ._type import Virsorter2Db
+from ._type import CheckVDB, GenomadDB, ViromicsMetadata, Virsorter2Db
 
 __all__ = [
-    "Virsorter2Db",
-    "ViralScore",
-    "ViralScoreFmt",
+    "CheckVDB",
+    "ViromicsMetadata",
+    "GenomadDB",
+    "CheckVDBDirFmt",
+    "ViromicsMetadataDirFmt",
+    "GenomadDBDirFmt",
     "Virsorter2DbDirFmt",
-    "HMMFormat",
+    "Virsorter2Db",
+    "GeneralTSVFormat",
     "GeneralBinaryFileFormat",
     "HallmarkGeneListFormat",
+    "HMMFormat",
     "RbsCatetoryNotesFormat",
-    "RbsCatetoryFormat",
-    "GeneralTSVFormat",
+    "RbsCatetoryFormat"
 ]

@@ -12,8 +12,8 @@ import tempfile
 
 from q2_types.per_sample_sequences import ContigSequencesDirFmt
 
-from q2_viromics._utils import run_command
-from q2_viromics.types._format import GenomadDBDirFmt, ViromicsMetadataDirFmt
+from q2_viromics.utils import run_command
+from q2_viromics.types import GenomadDBDirFmt, ViromicsMetadataDirFmt
 
 
 # Run the command for geNomad analysis
@@ -65,7 +65,7 @@ def genomad_end_to_end(
         )
 
 
-def genomad_analysis(
+def genomad_run(
     sequences: ContigSequencesDirFmt,
     database: GenomadDBDirFmt,
     num_threads: int = 1,

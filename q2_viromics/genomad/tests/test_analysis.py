@@ -10,11 +10,11 @@ import subprocess
 import unittest
 from unittest.mock import MagicMock, patch
 
-from q2_viromics.genomad_analysis import genomad_analysis, genomad_end_to_end
+from q2_viromics.genomad.analysis import genomad_run, genomad_end_to_end
 
 
 class TestGenomadAnalysis(unittest.TestCase):
-    @patch("q2_viromics.genomad_analysis.run_command")
+    @patch("q2_viromics.genomad.analysis.run_command")
     def test_genomad_end_to_end_success(self, mock_run_command):
         # Mock the paths
         mock_tmp = "/fake/tmp"
@@ -60,7 +60,7 @@ class TestGenomadAnalysis(unittest.TestCase):
         mock_run_command.assert_called_once_with(expected_cmd)
 
     @patch(
-        "q2_viromics.genomad_analysis.run_command",
+        "q2_viromics.genomad.analysis.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
     def test_genomad_end_to_end_failure(self, mock_run_command):
@@ -91,8 +91,8 @@ class TestGenomadAnalysis(unittest.TestCase):
                 in str(context.exception)
             )
 
-    @patch("q2_viromics.genomad_analysis.genomad_end_to_end")
-    @patch("q2_viromics.genomad_analysis.ContigSequencesDirFmt")
+    @patch("q2_viromics.genomad.analysis.genomad_end_to_end")
+    @patch("q2_viromics.genomad.analysis.ContigSequencesDirFmt")
     @patch("shutil.move")
     @patch("tempfile.TemporaryDirectory")
     @patch("os.path.exists", return_value=True)
@@ -120,7 +120,7 @@ class TestGenomadAnalysis(unittest.TestCase):
         mock_database.path = "/fake/database"
 
         # Call the function
-        result = genomad_analysis(
+        result = genomad_run(
             mock_sequences,
             mock_database,
             num_threads=1,

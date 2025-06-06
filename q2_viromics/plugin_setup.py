@@ -11,24 +11,20 @@ from q2_types.feature_data import FeatureData, Sequence
 from q2_types.metadata import ImmutableMetadata
 from q2_types.per_sample_sequences import Contigs
 from q2_types.sample_data import SampleData
-from qiime2.plugin import Citations, Int, Plugin, Range, Float
+from qiime2.plugin import Citations, Int, Plugin, Range, Float, Bool
 
 import q2_viromics
-
-from q2_viromics.checkv.analysis import checkv_run
-from q2_viromics.checkv.db import checkv_fetch_db
-from q2_viromics.checkv.types import (
+from q2_viromics.checkv import checkv_fetch_db, checkv_run
+from q2_viromics.genomad import genomad_fetch_db, genomad_run
+from q2_viromics.types import (
     CheckVDBDirFmt,
     GenomadDBDirFmt,
     ViromicsMetadataDirFmt,
-    CheckVDB,
-    ViromicsMetadata,
+    Virsorter2DbDirFmt,
+    Virsorter2Db,
+    CheckVDB, GenomadDB, ViromicsMetadata
 )
-from q2_viromics.genomad_analysis import genomad_analysis
-from q2_viromics.genomad_fetch_db import genomad_fetch_db
-from q2_viromics.virsorter2 import virsorter2_run, virsorter2_fetch_db
-from q2_viromics.virsorter2.types import Virsorter2DbDirFmt, Virsorter2Db
-from q2_viromics.types._type import CheckVDB, GenomadDB, ViromicsMetadata
+from q2_viromics.virsorter2 import virsorter2_fetch_db, virsorter2_run
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -48,9 +44,10 @@ plugin.register_formats(
     CheckVDBDirFmt,
     GenomadDBDirFmt,
     ViromicsMetadataDirFmt,
+    Virsorter2DbDirFmt
 )
 
-plugin.register_semantic_types(CheckVDB, GenomadDB, ViromicsMetadata)
+plugin.register_semantic_types(CheckVDB, GenomadDB, ViromicsMetadata, Virsorter2Db)
 
 plugin.register_artifact_class(
     CheckVDB,
@@ -69,20 +66,10 @@ plugin.register_semantic_type_to_format(
     directory_format=ViromicsMetadataDirFmt,
 )
 
-plugin.methods.register_function(
-    function=genomad_fetch_db,
-    inputs={},
-    parameters={},
-    outputs=[("database", GenomadDB)],
-    parameter_descriptions={},
-    output_descriptions={"database": "geNomad database."},
-    name="Fetch geNomad database",
-    description=(
-        "Fetch the geNomad database that contains the profiles of the markers "
-        "that are used to classify sequences, their taxonomic information and "
-        "their functional annotation."
-    ),
-    citations=[citations["geNomad"]],
+plugin.register_artifact_class(
+    Virsorter2Db,
+    directory_format=Virsorter2DbDirFmt,
+    description=("VirSorter2 database."),
 )
 
 plugin.methods.register_function(
@@ -141,7 +128,23 @@ plugin.methods.register_function(
 )
 
 plugin.methods.register_function(
-    function=genomad_analysis,
+    function=genomad_fetch_db,
+    inputs={},
+    parameters={},
+    outputs=[("database", GenomadDB)],
+    parameter_descriptions={},
+    output_descriptions={"database": "geNomad database."},
+    name="Fetch geNomad database",
+    description=(
+        "Fetch the geNomad database that contains the profiles of the markers "
+        "that are used to classify sequences, their taxonomic information and "
+        "their functional annotation."
+    ),
+    citations=[citations["geNomad"]],
+)
+
+plugin.methods.register_function(
+    function=genomad_run,
     inputs={
         "sequences": SampleData[Contigs],
         "database": GenomadDB,
@@ -249,25 +252,4 @@ plugin.methods.register_function(
     citations=[citations["VirSorter2"]],
 )
 
-plugin.register_formats(CheckVDBDirFmt, ViromicsMetadataDirFmt, Virsorter2DbDirFmt)
-
-plugin.register_semantic_types(CheckVDB, ViromicsMetadata, Virsorter2Db)
-
-plugin.register_artifact_class(
-    CheckVDB,
-    directory_format=CheckVDBDirFmt,
-    description=("CheckV database."),
-)
-
-plugin.register_semantic_type_to_format(
-    SampleData[ViromicsMetadata],
-    directory_format=ViromicsMetadataDirFmt,
-)
-
-plugin.register_artifact_class(
-    Virsorter2Db,
-    directory_format=Virsorter2DbDirFmt,
-    description=("VirSorter2 database."),
-)
-
-importlib.import_module("q2_viromics.checkv.types._transformer")
+importlib.import_module("q2_viromics.types._transformer")
