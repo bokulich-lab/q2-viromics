@@ -9,7 +9,7 @@ jobs:
   ci:
     uses: bokulich-lab/utilities/.github/workflows/ci.yaml@main
     with:
-      distro: pathogenome
+      distro: tiny
 
   qiime-ci:
     uses: qiime2/distributions/.github/workflows/lib-ci-dev.yaml@dev
