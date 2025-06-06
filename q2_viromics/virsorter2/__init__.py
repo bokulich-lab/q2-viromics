@@ -5,8 +5,7 @@
 #
 # The full license is in the file LICENSE, distributed with this software.
 # ----------------------------------------------------------------------------
+from .db import virsorter2_fetch_db
+from .analysis import virsorter2_run
 
-try:
-    from ._version import __version__
-except ModuleNotFoundError:
-    __version__ = "0.0.0+notfound"
+__all__ = ["virsorter2_fetch_db", "virsorter2_run"]

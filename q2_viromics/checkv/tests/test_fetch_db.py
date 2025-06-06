@@ -10,12 +10,12 @@ import subprocess
 import unittest
 from unittest.mock import MagicMock, patch
 
-from q2_viromics.checkv_fetch_db import checkv_download_database, checkv_fetch_db
+from q2_viromics.checkv.db import checkv_download_database, checkv_fetch_db
 
 
 class TestCheckVFetchDb(unittest.TestCase):
-    @patch("q2_viromics.checkv_fetch_db.run_command")
-    @patch("q2_viromics.checkv_fetch_db.CheckVDBDirFmt")
+    @patch("q2_viromics.checkv.db.run_command")
+    @patch("q2_viromics.checkv.db.CheckVDBDirFmt")
     def test_checkv_fetch_db_success(self, mock_CheckVDBDirFmt, mock_run_command):
         # Mock the CheckVDBDirFmt instance
         mock_database = MagicMock()
@@ -36,10 +36,10 @@ class TestCheckVFetchDb(unittest.TestCase):
         self.assertEqual(result, mock_database)
 
     @patch(
-        "q2_viromics.checkv_fetch_db.run_command",
+        "q2_viromics.checkv.db.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
-    @patch("q2_viromics.checkv_fetch_db.CheckVDBDirFmt")
+    @patch("q2_viromics.checkv.db.CheckVDBDirFmt")
     def test_CheckV_fetch_db_failure(self, mock_CheckVDBDirFmt, mock_run_command):
         # Mock the CheckVDBDirFmt instance
         mock_database = MagicMock()
@@ -54,7 +54,7 @@ class TestCheckVFetchDb(unittest.TestCase):
             in str(context.exception)
         )
 
-    @patch("q2_viromics.checkv_fetch_db.run_command")
+    @patch("q2_viromics.checkv.db.run_command")
     def test_vs2_setup_success(self, mock_run_command):
         # Mock the database path
         mock_database = MagicMock()
@@ -74,7 +74,7 @@ class TestCheckVFetchDb(unittest.TestCase):
         mock_run_command.assert_called_once_with(expected_cmd)
 
     @patch(
-        "q2_viromics.checkv_fetch_db.run_command",
+        "q2_viromics.checkv.db.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
     def test_checkv_download_database_failure(self, mock_run_command):
