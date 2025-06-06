@@ -1,0 +1,39 @@
+acc	name	desc	taxon
+PF02294.18	7kD_DNA_binding	7kD DNA-binding domain	arc
+PF14556.6	AF2331-like	AF2331-like	arc
+PF18079.1	AglB_L1	Archaeal glycosylation protein B long peripheral domain	arc
+PF09071.10	Alpha-amyl_C	Alpha-amylase, C terminal	arc
+PF18489.1	Alpha_Helical	Alpha helical domain	arc
+PF18653.1	Arcadin_1	Arcadin 1	arc
+PF12942.7	Archaeal_AmoA	Archaeal ammonia monooxygenase subunit A (AmoA)	arc
+PF01917.16	Arch_flagellin	Archaebacterial flagellin	arc
+PF04659.13	Arch_fla_DE	Archaeal flagella protein	arc
+PF06819.11	Arc_PepC	Archaeal Peptidase A24 C-terminal Domain	arc
+PF06847.11	Arc_PepC_II	Archaeal Peptidase A24 C-terminus Type II	arc
+PF18677.1	ArnB_C	Archaellum regulatory network B, C-terminal domain	arc
+PF09824.9	ArsR	ArsR transcriptional regulator	arc
+PF08112.11	ATP-synt_E_2	ATP synthase epsilon subunit	arc
+PF15915.5	BAT	GAF and HTH_10 associated domain	arc
+PF17952.1	Cas6_N	Cas6 N-terminal domain	arc
+PF09703.10	Cas_Csa4	CRISPR-associated protein (Cas_Csa4)	arc
+PF09702.10	Cas_Csa5	CRISPR-associated protein (Cas_Csa5)	arc
+PF09658.10	Cas_Csx9	CRISPR-associated protein (Cas_Csx9)	arc
+PF18249.1	Ca_bind_SSO6904	Calcium binding protein SSO6904	arc
+PF18822.1	CdvA	CdvA-like coiled-coil domain	arc
+PF04283.12	CheF-arch	Chemotaxis signal transduction system protein F from archaea	arc
+PF11520.8	Cren7	Chromatin protein Cren7	arc
+PF04038.12	DHNA	Dihydroneopterin aldolase	arc
+PF06510.11	DUF1102	Protein of unknown function (DUF1102)	arc
+PF06690.11	DUF1188	Protein of unknown function (DUF1188)	arc
+PF06939.11	DUF1286	Protein of unknown function (DUF1286)	arc
+PF01998.17	DUF131	Protein of unknown function DUF131	arc
+PF07185.11	DUF1404	Protein of unknown function (DUF1404)	arc
+PF07232.11	DUF1424	Putative rep protein (DUF1424)	arc
+PF07431.12	DUF1512	Protein of unknown function (DUF1512)	arc
+PF07754.11	DUF1610	Domain of unknown function (DUF1610)	arc
+PF07895.11	DUF1673	Protein of unknown function (DUF1673)	arc
+PF07913.11	DUF1678	Protein of unknown function (DUF1678)	arc
+PF08004.11	DUF1699	Protein of unknown function (DUF1699)	arc
+PF08350.10	DUF1724	Domain of unknown function (DUF1724)	arc
+PF08489.11	DUF1743	Domain of unknown function (DUF1743)	arc
+PF08967.10	DUF1884	Domain of unknown function (DUF1884)	arc

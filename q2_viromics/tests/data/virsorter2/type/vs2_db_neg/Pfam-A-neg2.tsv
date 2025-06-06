@@ -1,0 +1,13 @@
+acc	name	desc	taxon
+PF02294.18	7kD_DNA_binding	7kD DNA-binding domain
+PF14556.6		arc
+PF18079.1	AglB_L1	Archaeal glycosylation protein B long peripheral domain	arc
+PF09071.10	Alpha-amyl_C	Alpha-amylase, C terminal	arc
+PF18489.1	Alpha_Helical	Alpha helical domain	arc
+PF18653.1	Arcadin_1	Arcadin 1	arc
+PF12942.7	Archaeal_AmoA	Archaeal ammonia monooxygenase subunit A (AmoA)	arc
+PF01917.16	Arch_flagellin	Archaebacterial flagellin	arc
+PF04659.13	Arch_fla_DE	Archaeal flagella protein	arc
+PF06819.11	Arc_PepC	Archaeal Peptidase A24 C-terminal Domain	arc
+PF06847.11	Arc_PepC_II	Archaeal Peptidase A24 C-terminus Type II	arc
+PF18677.1	ArnB_C	Archaellum regulatory network B, C-terminal domain	arc
