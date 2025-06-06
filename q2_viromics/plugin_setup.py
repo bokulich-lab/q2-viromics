@@ -79,7 +79,7 @@ plugin.methods.register_function(
     outputs=[("database", CheckVDB)],
     parameter_descriptions={},
     output_descriptions={"database": "CheckV database."},
-    name="Fetch CheckV database",
+    name="Fetch CheckV database.",
     description=(
         "Fetch the CheckV database that includes a comprehensive collection "
         "of complete viral genomes from both cultured isolates "
@@ -134,7 +134,7 @@ plugin.methods.register_function(
     outputs=[("database", GenomadDB)],
     parameter_descriptions={},
     output_descriptions={"database": "geNomad database."},
-    name="Fetch geNomad database",
+    name="Fetch geNomad database.",
     description=(
         "Fetch the geNomad database that contains the profiles of the markers "
         "that are used to classify sequences, their taxonomic information and "
@@ -185,7 +185,7 @@ plugin.methods.register_function(
         "plasmid": "Plasmid sequences.",
         "virus_summary": "Virus classification summary.",
     },
-    name="Identify and classify viral genomes",
+    name="Identify and classify viral genomes.",
     description="Perform comprehensive viral genome analysis to identify and "
     "classify viral, proviral, and plasmid sequences.",
     citations=[citations["geNomad"]],
@@ -201,10 +201,10 @@ plugin.methods.register_function(
     parameter_descriptions={
         "n_jobs": "Number of simultaneous downloads.",
     },
-    output_descriptions={"database": "VirSorter2 database."},
-    name="Fetch the VirSorter2 database",
+    output_descriptions={"database": "VirSorter 2 database."},
+    name="Fetch the VirSorter 2 database.",
     description=(
-        "Fetch the VirSorter2 database that includes a collection "
+        "Fetch the VirSorter 2 database that includes a collection "
         "of known viral genomes and key genes that are typically "
         "found in viral genomes."
     ),
@@ -225,14 +225,13 @@ plugin.methods.register_function(
     input_descriptions={
         "sequences": "Input sequences from an assembly or genome "
         "data for virus detection.",
-        "database": "VirSorter2 database.",
+        "database": "VirSorter 2 database.",
     },
     parameter_descriptions={
         "n_jobs": "Max number of jobs allowed in parallel.",
         "min_score": "Minimal score to be identified as viral.",
         "min_length": "Minimal sequence length required. All sequences "
-        "shorter than this will "
-        "be removed.",
+        "shorter than this will be removed.",
     },
     outputs=[
         ("viral_sequences", FeatureData[Sequence]),
@@ -247,7 +246,7 @@ plugin.methods.register_function(
     name="Identify viral sequences and produce corresponding "
          "metadata with VirSorter 2.",
     description="Performs analysis for identifying and categorizing viral "
-    "sequences from metagenomic data using VirSorter2 and provides "
+    "sequences from metagenomic data using VirSorter 2 and provides "
     "corresponding metadata data.",
     citations=[citations["VirSorter2"]],
 )
