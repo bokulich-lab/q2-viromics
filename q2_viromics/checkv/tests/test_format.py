@@ -12,6 +12,7 @@ from q2_viromics.checkv.types._format import (
     CheckVDBDirFmt,
     GeneralBinaryFileFormat,
     GeneralTSVFormat,
+    GenomadDBDirFmt,
     HMMFormat,
     ViromicsMetadataDirFmt,
 )
@@ -120,6 +121,15 @@ class TestCheckVDBDirFmtPathMakers(TestPluginBase):
         )
         expected_path = "type/db/checkVdb/hmm_db/genome_lengths.tsv"
         self.assertEqual(str(result_path), expected_path)
+
+
+class TestGenomadDBDirFmt(TestPluginBase):
+    package = "q2_viromics.tests"
+
+    def test_CheckVDB_GeneralTSVFormat(self):
+        filepath = self.get_data_path("type/genomad_database_dir/")
+        format = GenomadDBDirFmt(filepath, mode="r")
+        format.validate()
 
 
 class TestViromicsMetadataDirFmt(TestPluginBase):

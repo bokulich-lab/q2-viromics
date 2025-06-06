@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_viromics.checkv.types._type import CheckVDB, ViromicsMetadata
+from q2_viromics.checkv.types._type import CheckVDB, GenomadDB, ViromicsMetadata
 
 
 class TestCheckVDbType(TestPluginBase):
@@ -15,6 +15,13 @@ class TestCheckVDbType(TestPluginBase):
 
     def test_CheckVDb_registration(self):
         self.assertRegisteredSemanticType(CheckVDB)
+
+
+class TestGenomadDBType(TestPluginBase):
+    package = "q2_viromics.tests"
+
+    def test_GenomadDB_registration(self):
+        self.assertRegisteredSemanticType(GenomadDB)
 
 
 class TestViromicsMetadataType(TestPluginBase):

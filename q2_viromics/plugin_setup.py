@@ -19,12 +19,16 @@ from q2_viromics.checkv.analysis import checkv_run
 from q2_viromics.checkv.db import checkv_fetch_db
 from q2_viromics.checkv.types import (
     CheckVDBDirFmt,
+    GenomadDBDirFmt,
     ViromicsMetadataDirFmt,
     CheckVDB,
     ViromicsMetadata,
 )
+from q2_viromics.genomad_analysis import genomad_analysis
+from q2_viromics.genomad_fetch_db import genomad_fetch_db
 from q2_viromics.virsorter2 import virsorter2_run, virsorter2_fetch_db
 from q2_viromics.virsorter2.types import Virsorter2DbDirFmt, Virsorter2Db
+from q2_viromics.types._type import CheckVDB, GenomadDB, ViromicsMetadata
 
 citations = Citations.load("citations.bib", package="q2_viromics")
 
@@ -38,6 +42,47 @@ plugin = Plugin(
     short_description="A QIIME 2 plugin for detecting viral genomes and assessing "
     "their quality.",
     citations=[citations["Caporaso-Bolyen-2024"]],
+)
+
+plugin.register_formats(
+    CheckVDBDirFmt,
+    GenomadDBDirFmt,
+    ViromicsMetadataDirFmt,
+)
+
+plugin.register_semantic_types(CheckVDB, GenomadDB, ViromicsMetadata)
+
+plugin.register_artifact_class(
+    CheckVDB,
+    directory_format=CheckVDBDirFmt,
+    description=("CheckV database."),
+)
+
+plugin.register_artifact_class(
+    GenomadDB,
+    directory_format=GenomadDBDirFmt,
+    description=("Genomad database."),
+)
+
+plugin.register_semantic_type_to_format(
+    SampleData[ViromicsMetadata],
+    directory_format=ViromicsMetadataDirFmt,
+)
+
+plugin.methods.register_function(
+    function=genomad_fetch_db,
+    inputs={},
+    parameters={},
+    outputs=[("database", GenomadDB)],
+    parameter_descriptions={},
+    output_descriptions={"database": "geNomad database."},
+    name="Fetch geNomad database",
+    description=(
+        "Fetch the geNomad database that contains the profiles of the markers "
+        "that are used to classify sequences, their taxonomic information and "
+        "their functional annotation."
+    ),
+    citations=[citations["geNomad"]],
 )
 
 plugin.methods.register_function(
@@ -93,6 +138,54 @@ plugin.methods.register_function(
         "using the end-to-end pipeline from CheckV."
     ),
     citations=[citations["CheckV"]],
+)
+
+plugin.methods.register_function(
+    function=genomad_analysis,
+    inputs={
+        "sequences": SampleData[Contigs],
+        "database": GenomadDB,
+    },
+    parameters={
+        "num_threads": Int % Range(1, None),
+        "splits": Int % Range(0, None),
+        "min_score": Float % Range(0, 1),
+        "min_number_genes": Int % Range(0, None),
+        "conservative_taxonomy": Bool,
+    },
+    input_descriptions={
+        "sequences": "Input sequences.",
+        "database": "GeNomad database.",
+    },
+    parameter_descriptions={
+        "num_threads": "Number of threads to use for prodigal-gv and DIAMOND.",
+        "splits": "Split the data for the MMseqs2 search. Higher values will "
+        "reduce memory usage, but will make the search slower. If the "
+        "MMseqs2 search is failing, try to increase the number of splits.",
+        "min_score": "Minimum score to flag a sequence as virus or plasmid.",
+        "min_number_genes": "The minimum number of genes a sequence must encode to "
+        "be considered for classification as a plasmid or virus.",
+        "conservative_taxonomy": "Make the virus taxonomic assignment process more "
+        "conservative. This might reduce the amount of "
+        "genomes assigned to the family level, but will "
+        "decrease the rate of family misassignment.",
+    },
+    outputs=[
+        ("viruses", SampleData[Contigs]),
+        ("proviruses", SampleData[Contigs]),
+        ("plasmid", SampleData[Contigs]),
+        ("virus_summary", SampleData[ViromicsMetadata]),
+    ],
+    output_descriptions={
+        "viruses": "Viral sequences.",
+        "proviruses": "Proviral sequences.",
+        "plasmid": "Plasmid sequences.",
+        "virus_summary": "Virus classification summary.",
+    },
+    name="Identify and classify viral genomes",
+    description="Perform comprehensive viral genome analysis to identify and "
+    "classify viral, proviral, and plasmid sequences.",
+    citations=[citations["geNomad"]],
 )
 
 plugin.methods.register_function(
