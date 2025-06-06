@@ -15,7 +15,7 @@ from ._format import (
     HallmarkGeneListFormat,
     HMMFormat,
     RbsCatetoryNotesFormat,
-    RbsCatetoryFormat
+    RbsCatetoryFormat,
 )
 from ._type import CheckVDB, GenomadDB, ViromicsMetadata, Virsorter2Db
 
@@ -33,5 +33,5 @@ __all__ = [
     "HallmarkGeneListFormat",
     "HMMFormat",
     "RbsCatetoryNotesFormat",
-    "RbsCatetoryFormat"
+    "RbsCatetoryFormat",
 ]

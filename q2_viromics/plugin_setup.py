@@ -22,7 +22,9 @@ from q2_viromics.types import (
     ViromicsMetadataDirFmt,
     Virsorter2DbDirFmt,
     Virsorter2Db,
-    CheckVDB, GenomadDB, ViromicsMetadata
+    CheckVDB,
+    GenomadDB,
+    ViromicsMetadata,
 )
 from q2_viromics.virsorter2 import virsorter2_fetch_db, virsorter2_run
 
@@ -41,10 +43,7 @@ plugin = Plugin(
 )
 
 plugin.register_formats(
-    CheckVDBDirFmt,
-    GenomadDBDirFmt,
-    ViromicsMetadataDirFmt,
-    Virsorter2DbDirFmt
+    CheckVDBDirFmt, GenomadDBDirFmt, ViromicsMetadataDirFmt, Virsorter2DbDirFmt
 )
 
 plugin.register_semantic_types(CheckVDB, GenomadDB, ViromicsMetadata, Virsorter2Db)
@@ -244,7 +243,7 @@ plugin.methods.register_function(
         "viral_boundary": "Viral boundary table.",
     },
     name="Identify viral sequences and produce corresponding "
-         "metadata with VirSorter 2.",
+    "metadata with VirSorter 2.",
     description="Performs analysis for identifying and categorizing viral "
     "sequences from metagenomic data using VirSorter 2 and provides "
     "corresponding metadata data.",

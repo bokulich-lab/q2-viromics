@@ -28,7 +28,9 @@ class test_Viromics_to_qiime_metadata_transformer(TestPluginBase):
 
     def test_combine_sample_metadata(self):
         exp = pd.read_csv(
-            self.get_data_path("checkv/viromics_metadata/combined.tsv"), sep="\t", index_col=0
+            self.get_data_path("checkv/viromics_metadata/combined.tsv"),
+            sep="\t",
+            index_col=0,
         )
         exp.index.name = "id"
         exp.index = exp.index.astype(str)

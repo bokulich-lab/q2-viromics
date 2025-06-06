@@ -16,7 +16,9 @@ from q2_viromics.types import (
     HMMFormat,
     ViromicsMetadataDirFmt,
     RbsCatetoryNotesFormat,
-    RbsCatetoryFormat, HallmarkGeneListFormat, Virsorter2DbDirFmt
+    RbsCatetoryFormat,
+    HallmarkGeneListFormat,
+    Virsorter2DbDirFmt,
 )
 
 
@@ -24,7 +26,9 @@ class TestCheckVDBFormats(TestPluginBase):
     package = "q2_viromics.tests"
 
     def test_CheckVDB_GeneralTSVFormat(self):
-        filepath = self.get_data_path("checkv/type/db/checkVdb/genome_db/checkv_error.tsv")
+        filepath = self.get_data_path(
+            "checkv/type/db/checkVdb/genome_db/checkv_error.tsv"
+        )
         format = GeneralTSVFormat(filepath, mode="r")
         format.validate()
 
@@ -43,12 +47,16 @@ class TestCheckVDBFormats(TestPluginBase):
             format.validate()
 
     def test_GeneralBinaryFileFormat(self):
-        filepath = self.get_data_path("checkv/type/db/checkVdb/genome_db/checkv_reps.dmnd")
+        filepath = self.get_data_path(
+            "checkv/type/db/checkVdb/genome_db/checkv_reps.dmnd"
+        )
         format = GeneralBinaryFileFormat(filepath, mode="r")
         format.validate()
 
     def test_HMMFormat(self):
-        filepath = self.get_data_path("checkv/type/db/checkVdb/hmm_db/checkv_hmms/1.hmm")
+        filepath = self.get_data_path(
+            "checkv/type/db/checkVdb/hmm_db/checkv_hmms/1.hmm"
+        )
         format = HMMFormat(filepath, mode="r")
         format.validate()
 
@@ -165,41 +173,53 @@ class TestVirsorter2DbFormats(TestPluginBase):
             format.validate()
 
     def test_Virsorter2Db_RbsCategoryNotesFormat(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db/rbs/rbs-catetory-notes.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db/rbs/rbs-catetory-notes.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         format.validate()
 
     # Test the case of a missing field
     def test_Virsorter2Db_RbsCategoryNotesFormat_neg1(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg1.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg1.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryNotesFormat"):
             format.validate()
 
     # Test the case of an empty element for the RBS field
     def test_Virsorter2Db_RbsCategoryNotesFormat_neg2(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg2.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg2.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryNotesFormat"):
             format.validate()
 
     # Test the case of an empty element for the Note field
     def test_Virsorter2Db_RbsCategoryNotesFormat_neg3(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg3.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg3.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryNotesFormat"):
             format.validate()
 
     # Empty file
     def test_Virsorter2Db_RbsCategoryNotesFormat_neg4(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg4.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg4.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryNotesFormat"):
             format.validate()
 
     # Only one column
     def test_Virsorter2Db_RbsCategoryNotesFormat_neg5(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg5.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-notes-neg5.tsv"
+        )
         format = RbsCatetoryNotesFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryNotesFormat"):
             format.validate()
@@ -211,75 +231,97 @@ class TestVirsorter2DbFormats(TestPluginBase):
 
     # Test the case of a missing field
     def test_Virsorter2Db_RbsCategoryFormat_neg1(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-neg1.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-neg1.tsv"
+        )
         format = RbsCatetoryFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryFormat"):
             format.validate()
 
     # Test the case of an empty element for the RBS field
     def test_Virsorter2Db_RbsCategoryFormat_neg2(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-neg2.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-neg2.tsv"
+        )
         format = RbsCatetoryFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryFormat"):
             format.validate()
 
     # Test the case of an empty element for the catetory field
     def test_Virsorter2Db_RbsCategoryFormat_neg3(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-neg3.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-neg3.tsv"
+        )
         format = RbsCatetoryFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryFormat"):
             format.validate()
 
     # Empty file
     def test_Virsorter2Db_RbsCategoryFormat_neg4(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-neg4.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-neg4.tsv"
+        )
         format = RbsCatetoryFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryFormat"):
             format.validate()
 
     # missing column
     def test_Virsorter2Db_RbsCategoryFormat_neg5(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/rbs-catetory-neg5.tsv")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/rbs-catetory-neg5.tsv"
+        )
         format = RbsCatetoryFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "RbsCatetoryFormat"):
             format.validate()
 
     def test_Virsorter2Db_HallmarkGeneListFormat(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db/group/dsDNAphage/hallmark-gene.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db/group/dsDNAphage/hallmark-gene.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         format.validate()
 
     # Test the case of a missing field
     def test_Virsorter2Db_HallmarkGeneListFormat_neg1(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/hallmark-gene-neg1.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/hallmark-gene-neg1.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "HallmarkGeneListFormat"):
             format.validate()
 
     # Test the case of an empty element for the Gene field
     def test_Virsorter2Db_HallmarkGeneListFormat_neg2(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/hallmark-gene-neg2.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/hallmark-gene-neg2.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "HallmarkGeneListFormat"):
             format.validate()
 
     # Test the case of an empty element for the Gene Description field
     def test_Virsorter2Db_HallmarkGeneListFormat_neg3(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/hallmark-gene-neg3.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/hallmark-gene-neg3.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "HallmarkGeneListFormat"):
             format.validate()
 
     # Empty file
     def test_Virsorter2Db_HallmarkGeneListFormat_neg4(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/hallmark-gene-neg4.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/hallmark-gene-neg4.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "HallmarkGeneListFormat"):
             format.validate()
 
     # Missing column
     def test_Virsorter2Db_HallmarkGeneListFormat_neg5(self):
-        filepath = self.get_data_path("virsorter2/type/vs2_db_neg/hallmark-gene-neg5.list")
+        filepath = self.get_data_path(
+            "virsorter2/type/vs2_db_neg/hallmark-gene-neg5.list"
+        )
         format = HallmarkGeneListFormat(filepath, mode="r")
         with self.assertRaisesRegex(ValidationError, "HallmarkGeneListFormat"):
             format.validate()
