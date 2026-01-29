@@ -1,0 +1,8 @@
+seqname	trim_orf_index_start	trim_orf_index_end	trim_bp_start	trim_bp_end	trim_pr	trim_pr_max	prox_orf_index_start	prox_orf_index_end	prox_bp_start	prox_bp_end	prox_pr	prox_pr_max	partial	full_orf_index_start	full_orf_index_end	full_bp_start	full_bp_end	pr_full	arc	bac	euk	vir	mix	unaligned	hallmark_cnt	group	shape	seqname_new	final_max_score	final_max_score_group
+ssDNA-linear	1	2	290	4547	0.927	0.927	1	2	290	4547			0	1	2	290	4547	0.927	0.0	0.0	0.0	100.0	0.0	0.0	0	ssDNA	linear	ssDNA-linear||full	0.927	ssDNA
+lavidaviridae-linear	1	9	1	8598	0.993	0.993	1	9	1	8598			0	1	9	1	8598	0.993	0.0	0.0	0.0	44.4	0.0	55.6	1	dsDNAphage	linear	lavidaviridae-linear||full	0.993	dsDNAphage
+RNA-linear	1	5	3	5540	0.5	0.5	1	5	3	5540			0	1	5	3	5540	0.5	0.0	0.0	0.0	20.0	20.0	60.0	0	dsDNAphage	linear	RNA-linear||full	0.5	dsDNAphage
+NCLDV-linear	1	1008	3	1181113	0.833	0.847	1	1008	3	1181113			0	1	1008	3	1181113	0.833	0.0	1.5	3.8	53.7	21.6	19.4	9	dsDNAphage	linear	NCLDV-linear||full	0.833	dsDNAphage
+Caudo-linear	1	14	1	13841	1.0	1.0	1	14	1	13841			0	1	14	1	13841	1.0	0.0	0.0	0.0	85.7	0.0	14.3	12	dsDNAphage	linear	Caudo-linear||full	1.0	dsDNAphage
+Caudo-circular	2	46	327	32076	0.993	0.993	2	46	327	32076			0	2	46	327	32076	0.993	0.0	0.0	0.0	77.8	0.0	22.2	4	dsDNAphage	circular	Caudo-circular||full	0.993	dsDNAphage
+Caudo-provirus	103	142	95069	133274	0.893	0.927	103	142	95069	133274	0.893	0.973	1	1	228	1	213841	0.473	3.8	11.5	0.0	26.9	36.5	21.2	12	dsDNAphage	linear	Caudo-provirus||0_partial	0.893	dsDNAphage

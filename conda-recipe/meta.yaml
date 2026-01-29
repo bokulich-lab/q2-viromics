@@ -20,7 +20,11 @@ requirements:
     - q2-metadata >={{ q2_metadata }}
     - q2-types >={{ q2_types }}
     - checkv
+    - genomad
+    - prodigal
     - pyhmmer
+    - screed
+    - virsorter >=2
 
   build:
     - python {{ python }}

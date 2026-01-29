@@ -13,8 +13,8 @@ import warnings
 
 from q2_types.per_sample_sequences import ContigSequencesDirFmt
 
-from q2_viromics._utils import run_command
-from q2_viromics.types._format import CheckVDBDirFmt, ViromicsMetadataDirFmt
+from q2_viromics.utils import run_command
+from q2_viromics.types import CheckVDBDirFmt, ViromicsMetadataDirFmt
 
 warnings.simplefilter(action="ignore", category=FutureWarning)
 
@@ -44,7 +44,7 @@ def checkv_end_to_end(tmp, sequences, database, num_threads):
         )
 
 
-def checkv_analysis(
+def checkv_run(
     sequences: ContigSequencesDirFmt,
     database: CheckVDBDirFmt,
     num_threads: int = 1,

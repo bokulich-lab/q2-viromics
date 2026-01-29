@@ -1,6 +1,5 @@
-# flake8: noqa
 # ----------------------------------------------------------------------------
-# Copyright (c) 2024, Christos Matzoros.
+# Copyright (c) 2024, Bokulich Lab.
 #
 # Distributed under the terms of the Modified BSD License.
 #

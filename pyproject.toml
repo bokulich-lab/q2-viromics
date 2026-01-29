@@ -3,7 +3,7 @@ name = "q2-viromics"
 authors = [
     { name = "Christos Matzoros", email = "christosmatzoros@gmail.com" }
 ]
-description = "A QIIME 2 plugin for the identification and analysis of viral sequences."
+description = "QIIME 2 plugin for the identification and analysis of viral sequences."
 readme = {file = "README.md", content-type = "text/markdown"}
 license = {file = "LICENSE"}
 dynamic = ["version"]

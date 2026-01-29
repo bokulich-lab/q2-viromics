@@ -1,0 +1,12 @@
+#RBS category	Note
+SD_Canonical	Canonical Shine-Dalgarno sequence (AGGAGG) and variations
+SD_Bacteroidetes	“Atypical” Shine-Dalgarno-like sequence found in Bacteroidetes (TAAAAAT)
+TATATA_3-6	Variations around TATA repeats (3 to 6 bases)
+OnlyA	Other motifs with only A
+OnlyT	Other motifs with only T
+DoubleA	Other motifs including AA
+DoubleT	Other motifs including TT
+Other_GA
+NoA	Other motifs without any A
+Other	Other motifs not matching any category
+None	No motif predicted
