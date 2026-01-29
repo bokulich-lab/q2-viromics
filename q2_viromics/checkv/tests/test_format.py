@@ -8,7 +8,7 @@
 from qiime2.plugin import ValidationError
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_viromics.types._format import (
+from q2_viromics.checkv.types._format import (
     CheckVDBDirFmt,
     GeneralBinaryFileFormat,
     GeneralTSVFormat,
@@ -18,7 +18,7 @@ from q2_viromics.types._format import (
 
 
 class TestCheckVDBFormats(TestPluginBase):
-    package = "q2_viromics.tests"
+    package = "q2_viromics.checkv.tests"
 
     def test_CheckVDB_GeneralTSVFormat(self):
         filepath = self.get_data_path("type/db/checkVdb/genome_db/checkv_error.tsv")
@@ -63,7 +63,7 @@ class TestCheckVDBFormats(TestPluginBase):
 
 
 class TestCheckVDBDirFmtPathMakers(TestPluginBase):
-    package = "q2_viromics.tests"
+    package = "q2_viromics.checkv.tests"
 
     def test_hmm_files_path_maker(self):
         obj = CheckVDBDirFmt("type/db/", mode="r")
@@ -123,7 +123,7 @@ class TestCheckVDBDirFmtPathMakers(TestPluginBase):
 
 
 class TestViromicsMetadataDirFmt(TestPluginBase):
-    package = "q2_viromics.tests"
+    package = "q2_viromics.checkv.tests"
 
     def test_ViromicsMetadataDirFmt(self):
         filepath = self.get_data_path("type/checkVMetadata/")

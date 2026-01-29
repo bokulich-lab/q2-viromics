@@ -13,11 +13,11 @@ from unittest.mock import MagicMock, patch
 import pandas as pd
 from q2_types.feature_data import DNAFASTAFormat
 
-from q2_viromics.checkv_analysis import checkv_analysis, checkv_end_to_end
+from q2_viromics.checkv.analysis import checkv_run, checkv_end_to_end
 
 
 class TestCheckvAnalysis(unittest.TestCase):
-    @patch("q2_viromics.checkv_analysis.run_command")
+    @patch("q2_viromics.checkv.analysis.run_command")
     def test_checkv_end_to_end_success(self, mock_run_command):
         # Mock the paths
         mock_tmp = "/fake/tmp"
@@ -52,7 +52,7 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_run_command.assert_called_once_with(expected_cmd)
 
     @patch(
-        "q2_viromics.checkv_analysis.run_command",
+        "q2_viromics.checkv.analysis.run_command",
         side_effect=subprocess.CalledProcessError(1, "cmd"),
     )
     def test_checkv_end_to_end_failure(self, mock_run_command):
@@ -79,7 +79,7 @@ class TestCheckvAnalysis(unittest.TestCase):
                 in str(context.exception)
             )
 
-    @patch("q2_viromics.checkv_analysis.checkv_end_to_end")
+    @patch("q2_viromics.checkv.analysis.checkv_end_to_end")
     @patch("shutil.move")
     @patch("tempfile.TemporaryDirectory")
     def test_checkv_analysis_success(
@@ -110,7 +110,7 @@ class TestCheckvAnalysis(unittest.TestCase):
         mock_database = MagicMock()
 
         # Call the function
-        result = checkv_analysis(mock_sequences, mock_database, num_threads=1)
+        result = checkv_run(mock_sequences, mock_database, num_threads=1)
 
         # Assertions for checkv_end_to_end call
         mock_checkv_end_to_end.assert_called_once_with(

@@ -8,7 +8,7 @@
 import unittest
 from unittest.mock import patch
 
-from q2_viromics._utils import run_command
+from ..utils import run_command
 
 
 class TestRunCommand(unittest.TestCase):

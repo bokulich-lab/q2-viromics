@@ -7,7 +7,7 @@
 # ----------------------------------------------------------------------------
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_viromics.types._type import CheckVDB, ViromicsMetadata
+from q2_viromics.checkv.types._type import CheckVDB, ViromicsMetadata
 
 
 class TestCheckVDbType(TestPluginBase):

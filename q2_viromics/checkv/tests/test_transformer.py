@@ -11,12 +11,12 @@ import pandas as pd
 import qiime2
 from qiime2.plugin.testing import TestPluginBase
 
-from q2_viromics.types._format import ViromicsMetadataDirFmt
-from q2_viromics.types._transformer import combine_sample_metadata
+from q2_viromics.checkv.types._format import ViromicsMetadataDirFmt
+from q2_viromics.checkv.types._transformer import combine_sample_metadata
 
 
 class test_Viromics_to_qiime_metadata_transformer(TestPluginBase):
-    package = "q2_viromics.tests"
+    package = "q2_viromics.checkv.tests"
 
     def test_ViromicsMetadataDirFmt_to_Metadata_transformer(self):
         transformer = self.get_transformer(ViromicsMetadataDirFmt, qiime2.Metadata)
