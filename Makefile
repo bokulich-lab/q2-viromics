@@ -16,7 +16,7 @@ test-cov: all
 
 test-docker: all
 	qiime info
-	qiime annotate --help
+	qiime viromics --help
 
 install: all
 	$(PYTHON) -m pip install -v .
