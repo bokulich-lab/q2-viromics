@@ -1,0 +1,16 @@
+name: CI
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+    tags: ["*"]
+  release:
+    types: [published]
+
+jobs:
+  ci:
+    uses: bokulich-lab/utilities/.github/workflows/ci.yaml@main
+    with:
+      distro: pathogenome
+      build_docker: true

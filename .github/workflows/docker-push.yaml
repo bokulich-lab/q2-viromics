@@ -1,0 +1,12 @@
+name: Docker push
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+
+jobs:
+  push-docker-images:
+    uses: bokulich-lab/utilities/.github/workflows/docker-push.yaml@main
+    secrets: inherit
